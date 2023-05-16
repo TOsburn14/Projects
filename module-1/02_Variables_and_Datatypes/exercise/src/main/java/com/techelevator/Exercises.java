@@ -462,7 +462,8 @@ public class Exercises {
 	    */
 		int distanceBetweenCities = 800;
 		int currentAmountTraveled = 537;
-		int percentageTraveled = distanceBetweenCities / currentAmountTraveled;
+		int currentTravelPercentage = currentAmountTraveled * 100;
+		int totalTravelPercentage = currentTravelPercentage / distanceBetweenCities;
 	}
 
 }
