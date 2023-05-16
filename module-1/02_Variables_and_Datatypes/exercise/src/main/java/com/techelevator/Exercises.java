@@ -445,6 +445,7 @@ public class Exercises {
 		double combinedRoomRate = jillRoomRate + billRoomRate;
 		double totalRoomsToPaint = 5;
 		double totalRateToPaintRoom = totalRoomsToPaint / combinedRoomRate;
+		double totalTimeNeededToPaintRoom = totalRoomsToPaint * totalRateToPaintRoom;
 
 	    /* Exercise 52
 	    52. Create and assign variables to hold a first name, last name, and middle initial. Using concatenation,
