@@ -8,8 +8,13 @@ public class ExtraExercises {
 	 sleepIn(false, false) → true
 	 sleepIn(true, false) → false
 	 sleepIn(false, true) → true
+
+	 weekday - T/F if a weekday or not
+	 vacation - T/F if on vacation
+	 return True if sleep in and False if not sleep in
 	 */
 	public boolean sleepIn(boolean weekday, boolean vacation) {
+<<<<<<< HEAD
 		boolean doSleepIn = false;
 		// If is not a weekday = Sleeping in
 		if (weekday == false) {
@@ -21,6 +26,9 @@ public class ExtraExercises {
 		}
 		// Otherwise = Dont Sleep in
 		return doSleepIn;
+=======
+		return weekday == false || vacation == true;
+>>>>>>> 8d25f4508c9bdc8135896ba30ca1edc5a31fbd75
 	}
 
 	/*
@@ -32,6 +40,7 @@ public class ExtraExercises {
 	 monkeyTrouble(true, false) → false
 	 */
 	public boolean monkeyTrouble(boolean aSmile, boolean bSmile) {
+<<<<<<< HEAD
 		boolean isMonkeyTrouble;
 		isMonkeyTrouble = true;
 		// If both monkeys are smiling = Monkey Trouble
@@ -47,6 +56,43 @@ public class ExtraExercises {
 			return false;
 		}
 		return true;
+=======
+
+		if (aSmile == true && bSmile == true) {
+			return true;
+		}
+
+		if (aSmile == false && bSmile == false) {
+			return true;
+		}
+
+		return false;
+
+
+		// Solution 1
+//		boolean inTrouble;
+//		if (aSmile == true && bSmile == true || aSmile == false && bSmile == false) {
+//			inTrouble = true;
+//		} else {
+//			inTrouble = false;
+//		}
+//
+//		return inTrouble;
+
+		// Solution 2
+		//return aSmile == bSmile;
+
+
+		// Solution 3
+//		if (aSmile ^ bSmile) {
+//			return false;
+//		}
+//		return true;
+
+		// Solution 4
+		//return !(aSmile ^ bSmile);
+
+>>>>>>> 8d25f4508c9bdc8135896ba30ca1edc5a31fbd75
 	}
 
 
