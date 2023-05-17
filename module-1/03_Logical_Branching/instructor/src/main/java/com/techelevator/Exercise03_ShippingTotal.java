@@ -82,7 +82,7 @@ public class Exercise03_ShippingTotal {
         } else  {
             shippingRate = OVER_40_LB_RATE * weightPounds;
         }
-        
+
         //double shippingRate = calculateShippingTotal(weightPounds);
 
         if (hasDiscount) {
