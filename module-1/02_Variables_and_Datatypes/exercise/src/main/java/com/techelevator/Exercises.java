@@ -454,7 +454,10 @@ public class Exercises {
 		with a period. Use "Grace", "Hopper, and "B" for the first name, last name, and middle initial.
 		Example: "John", "Smith, "D" —> "Smith, John D."
 	    */
-
+		String firstName = "Grace ";
+		String middleInitial = "B.";
+		String lastName = "Hopper, ";
+		String fullName = lastName + firstName + middleInitial;
 
 	    /* Exercise 53
 	    53. The distance between New York and Chicago is 800 miles, and the train has already travelled 537 miles.
