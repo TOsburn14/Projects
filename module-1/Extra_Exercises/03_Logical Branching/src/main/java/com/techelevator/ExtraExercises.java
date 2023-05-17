@@ -8,9 +8,13 @@ public class ExtraExercises {
 	 sleepIn(false, false) → true
 	 sleepIn(true, false) → false
 	 sleepIn(false, true) → true
+
+	 weekday - T/F if a weekday or not
+	 vacation - T/F if on vacation
+	 return True if sleep in and False if not sleep in
 	 */
 	public boolean sleepIn(boolean weekday, boolean vacation) {
-		return false;
+		return weekday == false || vacation == true;
 	}
 
 	/*
@@ -22,7 +26,41 @@ public class ExtraExercises {
 	 monkeyTrouble(true, false) → false
 	 */
 	public boolean monkeyTrouble(boolean aSmile, boolean bSmile) {
+
+		if (aSmile == true && bSmile == true) {
+			return true;
+		}
+
+		if (aSmile == false && bSmile == false) {
+			return true;
+		}
+
 		return false;
+
+
+		// Solution 1
+//		boolean inTrouble;
+//		if (aSmile == true && bSmile == true || aSmile == false && bSmile == false) {
+//			inTrouble = true;
+//		} else {
+//			inTrouble = false;
+//		}
+//
+//		return inTrouble;
+
+		// Solution 2
+		//return aSmile == bSmile;
+
+
+		// Solution 3
+//		if (aSmile ^ bSmile) {
+//			return false;
+//		}
+//		return true;
+
+		// Solution 4
+		//return !(aSmile ^ bSmile);
+
 	}
 
 	/*
