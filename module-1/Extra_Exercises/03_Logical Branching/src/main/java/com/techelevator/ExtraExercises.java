@@ -10,7 +10,17 @@ public class ExtraExercises {
 	 sleepIn(false, true) → true
 	 */
 	public boolean sleepIn(boolean weekday, boolean vacation) {
-		return false;
+		boolean doSleepIn = false;
+		// If is not a weekday = Sleeping in
+		if (weekday == false) {
+			doSleepIn = true;
+		}
+		// If On vacation = sleep in
+		if (vacation == true) {
+			doSleepIn = true;
+		}
+		// Otherwise = Dont Sleep in
+		return doSleepIn;
 	}
 
 	/*
@@ -22,8 +32,24 @@ public class ExtraExercises {
 	 monkeyTrouble(true, false) → false
 	 */
 	public boolean monkeyTrouble(boolean aSmile, boolean bSmile) {
-		return false;
+		boolean isMonkeyTrouble;
+		isMonkeyTrouble = true;
+		// If both monkeys are smiling = Monkey Trouble
+//		if (aSmile == true && bSmile == true) {
+//			return true;
+//		}
+//		if (aSmile == false && bSmile == false) {
+//
+//			return true;
+//		}
+//		return false;
+		if (aSmile ^ bSmile) {
+			return false;
+		}
+		return true;
 	}
+
+
 
 	/*
 	 3. Given two int values, return their sum.
