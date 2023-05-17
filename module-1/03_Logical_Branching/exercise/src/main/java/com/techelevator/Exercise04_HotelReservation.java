@@ -29,10 +29,8 @@ public class Exercise04_HotelReservation {
         if (numberOfNights <= 2) {
             return DAILY_RATE * numberOfNights;
         }
-        if (numberOfNights <= 3) {
-            return DISCOUNT_RATE * numberOfNights;
-        }
-        return 0.0;
+        return DISCOUNT_RATE * numberOfNights;
+
     }
 
     /*
@@ -47,20 +45,18 @@ public class Exercise04_HotelReservation {
     calculateStayTotal(3, true) ➔ 344.97
      */
     public double calculateStayTotal(int numOfTotalNights, boolean includesParking) {
-        if (numOfTotalNights <= 2 && includesParking){
+        if (numOfTotalNights <= 2 && includesParking) {
             return (DAILY_RATE * numOfTotalNights) + (numOfTotalNights * PARKING_RATE);
         }
-        if (numOfTotalNights <= 2){
+        if (numOfTotalNights <= 2) {
             return numOfTotalNights * DAILY_RATE;
         }
-        if (numOfTotalNights <= 3 && includesParking){
+        if (numOfTotalNights >= 3 && includesParking) {
             return (numOfTotalNights * DISCOUNT_RATE) + (numOfTotalNights * PARKING_RATE);
         }
-        if (numOfTotalNights >= 3) {
-            return DISCOUNT_RATE * numOfTotalNights;
-        }
-        return 0.0;
+        return DISCOUNT_RATE * numOfTotalNights;
     }
+
 
     /*
     Innovator's Inn offers late checkout—but it comes at a price.
@@ -79,6 +75,27 @@ public class Exercise04_HotelReservation {
     calculateStayTotal(3, true, true) ➔ 364.97
      */
     public double calculateStayTotal(int numOfTotalNights, boolean includesParking, boolean includesLateCheckout) {
-        return 0.0;
+        if (numOfTotalNights <= 2 && includesParking && includesLateCheckout) {
+            return (DAILY_RATE * numOfTotalNights) + (numOfTotalNights * PARKING_RATE) + LATE_CHECKOUT_FEE;
+        }
+        if (numOfTotalNights <= 2 && includesParking) {
+            return (numOfTotalNights * DAILY_RATE) + (numOfTotalNights * PARKING_RATE);
+        }
+        if (numOfTotalNights <= 2 && includesLateCheckout){
+            return (numOfTotalNights * DAILY_RATE) + LATE_CHECKOUT_FEE;
+        }
+        if (numOfTotalNights <= 2) {
+            return (numOfTotalNights * DAILY_RATE);
+        }
+        if (numOfTotalNights >= 3 && includesParking && includesLateCheckout) {
+            return (numOfTotalNights * DISCOUNT_RATE) + (numOfTotalNights * PARKING_RATE) + LATE_CHECKOUT_FEE;
+        }
+        if (numOfTotalNights >= 3 && includesParking) {
+            return (numOfTotalNights * DISCOUNT_RATE) + (numOfTotalNights * PARKING_RATE);
+        }
+        if (numOfTotalNights >= 3 && includesLateCheckout){
+            return (numOfTotalNights * DISCOUNT_RATE) + LATE_CHECKOUT_FEE;
+        }
+        return DISCOUNT_RATE * numOfTotalNights;
     }
 }
