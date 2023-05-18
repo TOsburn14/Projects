@@ -38,9 +38,11 @@ public class Exercise03_Shirts {
     buildBulkOrder(0) → []
      */
     public char[] buildBulkOrder(int numberOfShirts) {
-        for (int i = 0; i < numberOfShirts; i++) {
+        char [] shirts = new char []{'S','M','L'};
+        for (int i = 0; i < shirts.length ; i++) {
+
         }
-            return new char[]{};
+            return shirts;
     }
 
 
