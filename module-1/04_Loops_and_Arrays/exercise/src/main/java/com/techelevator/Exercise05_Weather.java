@@ -48,13 +48,15 @@ public class Exercise05_Weather {
 	hottestDay([55]) → 55
     */
     public int hottestDay(int[] dailyHighs) {
+        int highestTemp = dailyHighs[0];
         for (int i = 0; i < dailyHighs.length; i++) {
-
-
+            if (dailyHighs[i] > highestTemp) {
+                highestTemp = dailyHighs[i];
+            }
         }
-
-        return 0;
+        return highestTemp;
     }
+
 
     /*
     GaleForce discovered an equipment malfunction. Every other reading, starting with the first,
