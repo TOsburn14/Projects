@@ -61,6 +61,25 @@ public class Exercise04_Cards {
     discardTopCard([]) → []
      */
     public String[] discardTopCard(String[] remainingDeck) {
-        return new String[] {};
+
+        // Make sure the deck has cards, if not return an empty array
+        if (remainingDeck.length == 0) {
+            return new String[0];
+        }
+
+        // remove the first card from the deck
+        String[] deckWithoutFirstCard = new String[remainingDeck.length - 1];
+        int newArrayIndex = 0;
+        for (int i  = 1; i < remainingDeck.length; i++) {
+            // Get the card from the original array
+            String currentCard = remainingDeck[i];
+            // Add the card to the new array
+            deckWithoutFirstCard[newArrayIndex] = currentCard;
+            newArrayIndex++;
+        }
+
+        // return the deck without the first card
+
+        return deckWithoutFirstCard;
     }    
 }
