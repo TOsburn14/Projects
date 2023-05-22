@@ -108,7 +108,7 @@ public class Exercises {
      */
     public String firstHalf(String str) {
         int halfWord = str.length() / 2;
-        String result = str.substring(0,halfWord);
+        String result = str.substring(0, halfWord);
         return result;
     }
 
@@ -120,7 +120,7 @@ public class Exercises {
      withoutEnd("coding") → "odin"
      */
     public String withoutEnd(String str) {
-        String result = str.substring(1,str.length()-1);
+        String result = str.substring(1, str.length() - 1);
         return result;
     }
 
@@ -133,7 +133,7 @@ public class Exercises {
      comboString("aaa", "b") → "baaab"
      */
     public String comboString(String a, String b) {
-        if (a.length() < b.length()){
+        if (a.length() < b.length()) {
             return a + b + a;
         }
         return b + a + b;
@@ -159,7 +159,7 @@ public class Exercises {
      left2("Hi") → "Hi"
      */
     public String left2(String str) {
-        String result = str.substring(0,2);
+        String result = str.substring(0, 2);
         String resultTwo = str.substring(2);
         String newResult = resultTwo + result;
         return newResult;
@@ -173,8 +173,8 @@ public class Exercises {
      right2("Hi") → "Hi"
      */
     public String right2(String str) {
-        String result = str.substring(str.length()-2);
-        String resultTwo = str.substring(0,str.length()-2);
+        String result = str.substring(str.length() - 2);
+        String resultTwo = str.substring(0, str.length() - 2);
         String finalResult = result + resultTwo;
         return finalResult;
     }
@@ -187,9 +187,9 @@ public class Exercises {
      theEnd("oh", true) → "o"
      */
     public String theEnd(String str, boolean front) {
-        String falseResult = str.substring(str.length()-1);
-        String trueResult = str.substring(0,1);
-        if (front == false){
+        String falseResult = str.substring(str.length() - 1);
+        String trueResult = str.substring(0, 1);
+        if (front == false) {
             return falseResult;
         }
 
@@ -204,12 +204,12 @@ public class Exercises {
      withoutEnd2("ab") → ""
      */
     public String withoutEnd2(String str) {
-        if (str.length() == 0){
+        if (str.length() == 0) {
             return "";
-        } else if (str.length() == 1){
+        } else if (str.length() == 1) {
             return str.substring(1);
         }
-        String result = str.substring(1,str.length()-1);
+        String result = str.substring(1, str.length() - 1);
         return result;
     }
 
@@ -221,7 +221,7 @@ public class Exercises {
      middleTwo("Practice") → "ct"
      */
     public String middleTwo(String str) {
-        String result = str.substring((str.length() / 2) -1,(str.length() / 2) +1);
+        String result = str.substring((str.length() / 2) - 1, (str.length() / 2) + 1);
 
         return result;
     }
@@ -246,9 +246,9 @@ public class Exercises {
      nTwice("Chocolate", 1) → "Ce"
      */
     public String nTwice(String str, int n) {
-    String firstResult = str.substring(0,n);
-    String secondResult = str.substring(str.length()-n);
-    String finalResult = firstResult + secondResult;
+        String firstResult = str.substring(0, n);
+        String secondResult = str.substring(str.length() - n);
+        String finalResult = firstResult + secondResult;
         return finalResult;
     }
 
@@ -284,9 +284,11 @@ public class Exercises {
      hasBad("xxbadxx") → false
      */
     public boolean hasBad(String str) {
-        if(indexOf(str)
+         boolean thisIsBad = str.indexOf("bad");
         return thisIsBad;
     }
+
+
 
     /*
      Given a string and a non-negative int n, return a larger string that is n copies of the original string.
