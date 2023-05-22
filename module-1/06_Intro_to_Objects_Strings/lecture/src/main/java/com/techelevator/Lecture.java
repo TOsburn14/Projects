@@ -8,7 +8,9 @@ public class Lecture {
 		System.out.println("******    CREATING OBJECTS    ******");
 		System.out.println("************************************");
 
-
+		Cake chocolateCake = new Cake("Chocolate", false);
+		Cake yellowCake = new Cake("Buttercream", true);
+		chocolateCake.setIcingType("Whipped");
 
 		System.out.println("************************************");
 		System.out.println("****** MAKING A STRING OBJECT ******");
@@ -21,7 +23,10 @@ public class Lecture {
 
 		/* create a new instance of String using a literal */
 
-		
+		String name = "John";
+		String name2 = new String("Rachelle");
+
+		String greeting = "Hello" + name2;
 
 
 		System.out.println();
@@ -61,6 +66,14 @@ public class Lecture {
 		System.out.println("****** MEMBER METHODS ******");
 		System.out.println("******************************");
 		System.out.println();
+
+		String stringName = "Tech Elevator";
+
+		for (int i = 0 ; i < stringName.length(); i++){
+			System.out.println( stringName.charAt( i ));
+		}
+
+		String subString = stringName.substring(2,6);
 
 
 		/* Other commonly used methods:
