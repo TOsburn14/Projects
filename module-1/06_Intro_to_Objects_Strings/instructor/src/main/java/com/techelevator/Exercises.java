@@ -1,5 +1,7 @@
 package com.techelevator;
 
+import java.util.Locale;
+
 public class Exercises {
 
 	/*
@@ -44,7 +46,16 @@ public class Exercises {
 	 makeOutWord("[[]]", "word") → "[[word]]"
 	 */
 	public String makeOutWord(String out, String word) {
-		return null;
+		String newString = "";
+		// Divide the out string into a first and last half
+			// Get the first half of out
+		String firstHalf = out.substring(0, 2);
+			// Get the last half of out
+		String lastHalf = out.substring(2);
+		// create a new string firstHalf + word + lastHalf
+		newString = firstHalf + word + lastHalf;
+		// return the new String
+		return newString;
 	}
 
 	/*
@@ -294,7 +305,27 @@ public class Exercises {
 	 last2("axxxaaxx") → 2
 	 */
 	public int last2(String str) {
-		return 0;
+		// If the String is < 2 length return 0
+		if (str.length() <= 2) {
+			return 0;
+		}
+
+		// declare a counter (counter variable)
+		int numberFound = 0;
+		// get the last 2 characters of the string  (variable to hold last 2)
+		String lastTwoChar = str.substring( str.length() - 2 );
+		// Loop over the String from the first to the 3 to last character
+		for (int i = 0; i < str.length() - 2; i++) {
+			// compare the current character and the next with the last 2  (variable to hold current)
+			String nextPart = str.substring(i, i + 2);
+			// If equal then add to a count
+			if (nextPart.equals(lastTwoChar)) {
+				numberFound++;
+			}
+		}
+		// return count
+
+		return numberFound;
 	}
 
 	/*
@@ -315,7 +346,18 @@ public class Exercises {
 	 altPairs("CodingHorror") → "Congrr"
 	 */
 	public String altPairs(String str) {
-		return null;
+		String newString = "";
+
+		for (int i = 0; i < str.length(); i += 4) {
+			char first = str.charAt(i);
+			newString += String.valueOf(first);
+			if ( (i + 1) < str.length() ) {
+				char two = str.charAt(i + 1);
+				newString += String.valueOf(two);
+			}
+		}
+
+		return newString;
 	}
 
 	/*

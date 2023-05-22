@@ -1,14 +1,34 @@
 package com.techelevator;
 
+import java.util.Locale;
+
 public class Lecture {
 
 	public static void main(String[] args) {
+
+		int x = 10;
+		int y = x;
+		x = 30;
+
+		int[] nums = new int[4];
+		nums[0] = 10;
+		nums[1] = 20;
+		nums[2] = 30;
+		nums[3] = 40;
+
+		int[] nums2 = nums;
+
+		nums2[2] = 42;
+
 
 		System.out.println("************************************");
 		System.out.println("******    CREATING OBJECTS    ******");
 		System.out.println("************************************");
 
+		Cake chocolateCake = new Cake("Chocolate", false);
+		Cake yellowCake = new Cake("Buttercream", true);
 
+		chocolateCake.setIcingType("Whipped");
 
 		System.out.println("************************************");
 		System.out.println("****** MAKING A STRING OBJECT ******");
@@ -21,7 +41,17 @@ public class Lecture {
 
 		/* create a new instance of String using a literal */
 
-		
+		String name = "John";
+		String name2 = new String("Rachelle");
+
+		String greeting = "Hello " + name2;
+
+		String bootcampName = "Tech Elevator";
+		bootcampName.toUpperCase();
+		bootcampName = bootcampName.toUpperCase();
+
+		char[] awesomeArray = new char[] { 'A', 'w','e','s','o','m','e'};
+		String awesomeString1 = new String( awesomeArray );
 
 
 		System.out.println();
@@ -62,6 +92,21 @@ public class Lecture {
 		System.out.println("******************************");
 		System.out.println();
 
+		String stringName = "Tech Elevator";
+
+		for (int i = 0; i < stringName.length(); i++) {
+			System.out.println( stringName.charAt( i ) );
+		}
+
+		String substringed = stringName.substring(2, 6);
+
+		String firstLetter = stringName.substring(0,1);
+
+		String endOfString = stringName.substring(5);
+
+		String lastLetter = stringName.substring( stringName.length() - 1);
+		String last2Letters = stringName.substring( stringName.length() - 2 );
+
 
 		/* Other commonly used methods:
 		 *
@@ -76,5 +121,27 @@ public class Lecture {
 		 * trim
 		 */
 
+		// Contains returns true if one string has the other as part of it
+		boolean containsEch = stringName.contains("ech");
+		int indexOfElevator = stringName.indexOf("Elevator");
+		int indexOfe = stringName.indexOf("e");
+
+		String upperCaseElevator = stringName.replace("Elevator", "ELEVATOR");
+
+		String[] partsDividedBySpace = stringName.split(" ");
+		String[] partsDividedBye = stringName.split("e");
+
+		String trimmedString = " this string starts and ends with a space     ".trim();
+
+		String stringOfNumber = String.valueOf(100);
+		String stringOfBoolean = String.valueOf(true);
+
+		String joinedString = String.join(" --> ", "Five", "Four", "Three", "Two", "One", "LAUNCH!");
+		System.out.println(joinedString);
+
+		char a = 'a';
+		String s = "-";
+		s = s + a;
+		String s2 = String.valueOf(a);
 	}
 }
