@@ -6,17 +6,28 @@ public class DecimalToBinary {
 		Scanner userInput = new Scanner(System.in);
 		int userNumber = 0;
 		int finalCode = 0;
+		String binaryResult = "";
 
 
-		System.out.println("What number would you like to convert to binary?");
+		System.out.println("Please enter in a series of decimal values (separated by spaces):");
 		String inputFromUser = userInput.nextLine();
-		int newUserNumber = Integer.parseInt(inputFromUser);
-		String[] binaryCode = new String[newUserNumber];
-		for (int i = 0 ; i < userNumber ; i++){
-			newUserNumber /= 2;
-			System.out.println();
+		String[] partsOfString = inputFromUser.split(" ");
+		for (int i = 0; i < partsOfString.length; i++) {
 
+
+			int newUserNumber = Integer.parseInt(partsOfString[i]);
+
+			String[] binaryCode = new String[newUserNumber];
+			while (newUserNumber > 0) {
+
+				//System.out.print();
+				finalCode = newUserNumber % 2;
+				newUserNumber = newUserNumber / 2;
+				binaryResult = finalCode + binaryResult;
+			}
+			System.out.println(partsOfString[i] + " in binary is " + binaryResult);
+			binaryResult = "";
 		}
 	}
 
-}
+	}

@@ -11,9 +11,11 @@ public class Exercises {
 	 helloName("X") → "Hello X!"
 	 */
 	public String helloName(String name) {
-		String newName = "";
+		String greeting = "Hello ";
+		String welcome = "";
+		welcome = greeting + name + "!";
 
-		return null;
+		return welcome;
 	}
 
 	/*
@@ -24,7 +26,9 @@ public class Exercises {
 	 makeAbba("What", "Up") → "WhatUpUpWhat"
 	 */
 	public String makeAbba(String a, String b) {
-		return null;
+		String abba = "";
+		abba = a + b + b + a;
+		return abba;
 	}
 
 	/*
@@ -36,7 +40,9 @@ public class Exercises {
 	 makeTags("cite", "Yay") → "<cite>Yay</cite>"
 	 */
 	public String makeTags(String tag, String word) {
-		return null;
+		String html = "";
+		html = ("<" + tag + ">") + word + ("</" + tag + ">");
+		return html;
 	}
 
 	/*
@@ -68,7 +74,11 @@ public class Exercises {
 	 extraEnd("Hi") → "HiHiHi"
 	 */
 	public String extraEnd(String str) {
-		return null;
+		String lastTwo = str.substring(str.length()-2);
+		String finalWord = lastTwo + lastTwo + lastTwo;
+
+
+		return finalWord;
 	}
 
 	/*
