@@ -3,6 +3,7 @@ package com.techelevator;
 import org.hamcrest.core.StringStartsWith;
 
 import java.nio.charset.StandardCharsets;
+import java.util.Locale;
 
 public class Exercises {
 
@@ -261,7 +262,16 @@ public class Exercises {
      twoChar("java", 3) → "ja"
      */
     public String twoChar(String str, int n) {
-        return null;
+        if (n<0){
+            return str.substring(0,2);
+        }
+        if (str.length()-n < 2) {
+            return str.substring(0,2);
+        }
+
+
+        return str.substring(n,n+2);
+
     }
 
     /*
@@ -272,7 +282,8 @@ public class Exercises {
      middleThree("solving") → "lvi"
      */
     public String middleThree(String str) {
-        return null;
+        int result = str.length()/2 -1;
+        return str.substring(result, result + 3);
     }
 
     /*
@@ -284,8 +295,10 @@ public class Exercises {
      hasBad("xxbadxx") → false
      */
     public boolean hasBad(String str) {
-         boolean thisIsBad = str.indexOf("bad");
-        return thisIsBad;
+        if (str.indexOf("bad") == 0 || str.indexOf("bad") == 1){
+            return true;
+        }
+        return false;
     }
 
 
@@ -297,7 +310,8 @@ public class Exercises {
      stringTimes("Hi", 1) → "Hi"
      */
     public String stringTimes(String str, int n) {
-        return null;
+        String result = str.repeat(n);
+        return result;
     }
 
     /*
@@ -308,6 +322,7 @@ public class Exercises {
      frontTimes("Abc", 3) → "AbcAbcAbc"
      */
     public String frontTimes(String str, int n) {
+       // String result = str.substring(str.length(<= 3));
         return null;
     }
 
