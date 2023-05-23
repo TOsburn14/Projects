@@ -16,6 +16,7 @@ public class Exercises {
 	 array2List( {"Left", "Right", "Forward", "Back"} )  ->  ["Left", "Right", "Forward", "Back"]
 	 */
 	public List<String> array2List(String[] stringArray) {
+		// hint: we did this in lecture
 		return null;
 	}
 
@@ -26,6 +27,7 @@ public class Exercises {
 	 list2Array( ["Left", "Right", "Forward", "Back"] )  ->  {"Left", "Right", "Forward", "Back"}
 	 */
 	public String[] list2Array(List<String> stringList) {
+		// hint: we also did this in lecture
 		return null;
 	}
 
@@ -37,7 +39,18 @@ public class Exercises {
 	 no4LetterWords( {"Jack", "Jill", "Jane", "John", "Jim"} )  ->  ["Jim"]
 	 */
 	public List<String> no4LetterWords(String[] stringArray) {
-		return null;
+		// 1. create a new list
+		List<String> wordsThatAreNot4Letters = new ArrayList<String>();
+		// 2. Loop over the array
+		for (String word : stringArray) {
+			// 3.   for each word check if the length is 4
+			if (word.length() != 4) {
+				// 4.   if the length is not 4 add it to the new list
+				wordsThatAreNot4Letters.add(word);
+			}
+		}
+		// 5. return the newlist
+		return wordsThatAreNot4Letters;
 	}
 
 	/*
