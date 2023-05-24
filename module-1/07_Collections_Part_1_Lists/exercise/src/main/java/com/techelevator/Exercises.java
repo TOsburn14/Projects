@@ -132,9 +132,9 @@ public class Exercises {
     HINT: To convert an Integer x to a String, you can use x.toString() in your code. For example, if x = 1, then x.toString() returns "1."
      */
     public List<String> fizzBuzzList(Integer[] integerArray) {
-       List<String> firstList = new ArrayList<>();
+        List<String> firstList = new ArrayList<>();
 
-        for ( Integer listCheck : integerArray) {
+        for (Integer listCheck : integerArray) {
             if (listCheck % 3 == 0 && listCheck % 5 == 0) {
                 firstList.add("FizzBuzz");
             } else if (listCheck % 5 == 0) {
@@ -159,10 +159,17 @@ public class Exercises {
      */
     public List<Integer> interleaveLists(List<Integer> listOne, List<Integer> listTwo) {
         List<Integer> finalList = new ArrayList<>();
-        for (int i = 0; i < listOne.toArray().length; i++) {
-            finalList.add(listOne.size());
-        }
-        return null;
-    }
+        for (int i = 0; i < listOne.toArray().length || i < listTwo.toArray().length; i++) {
 
+            if (i < listOne.toArray().length) {
+                finalList.add(listOne.get(i));
+            }
+            if (i < listTwo.toArray().length) {
+                finalList.add(listTwo.get(i));
+            }
+        }
+
+
+        return finalList;
+    }
 }
