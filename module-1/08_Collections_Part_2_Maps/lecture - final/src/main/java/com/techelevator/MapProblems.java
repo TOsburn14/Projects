@@ -1,9 +1,6 @@
 package com.techelevator;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class MapProblems {
     public static void main(String[] args) {
@@ -29,16 +26,42 @@ public class MapProblems {
 			C3: Squirrel Treats
 		 */
 
+        Map<String, String > products = new LinkedHashMap<String, String>();
+        products.put("A1", "Candy Bar");
+        products.put("A2", "Nut Bar");
+        products.put("A3", "Bag of Chocolates");
+        products.put("B1","Potato Chips");
+        products.put("B2", "Pretzels");
+        products.put("B3", "Nutter Butters");
+        products.put("C1", "Cat Treats");
+        products.put("C2", "Dog Treats");
+        products.put("C3", "Squirrel Treats");
+        products.put("C4", "Asahi Dry Beer");
 
+        for (Map.Entry<String, String> entry : products.entrySet()) {
+            String key = entry.getKey();
+            String value = entry.getValue();
+            System.out.println(key + " : " + value);
+        }
+
+        String potatoChips = products.get("B1");
+        Scanner userInput = new Scanner(System.in);
+
+        System.out.print("Product code >>>");
+        String productCode = userInput.nextLine();
+
+        String productUserSelected = products.get(productCode);
+        System.out.println("You selected " + productUserSelected);
 
         System.out.println();
         System.out.println("####################");
         System.out.println("     Problem 2     ");
         System.out.println("####################");
         System.out.println();
+
 		/*
 			Given the following Map which is users and their account balances in dollars,
-			transfer $50 the funds from Bob's account to Anya's account
+			transfer $50 from Bob's account to Anya's account
 
 			Print the new value of Anya's account to the screen.
 		 */
@@ -46,6 +69,15 @@ public class MapProblems {
         accounts.put("Anya", 100d);
         accounts.put("Bob", 200d);
 
+        // Remove 50 from Bob's account
+            // get the amount in Bob's account
+            double bobsBalance = accounts.get("Bob");
+            // remove 50 from Bob's account
+            bobsBalance -= 50;
+            accounts.put("Bob", bobsBalance);
+
+        // Add 50 to Anya's account
+            accounts.put("Anya", accounts.get("Anya") + 50);
 
 
         System.out.println();
@@ -58,6 +90,17 @@ public class MapProblems {
 		 */
         List<String> names = Arrays.asList(new String[]{"Rachelle", "John", "Rachelle", "Steve", "Dan", "Matt", "John", "Matt", "Rachelle", "Steve", "John", "Rachelle", "Rachelle" });
 
+        Map<String, Integer> namesCounts = new HashMap<String, Integer>();
+        for (String name : names) {
+            if (namesCounts.containsKey(name)) {
+                // Update the count
+                namesCounts.put(name, namesCounts.get(name) + 1);
+            } else {
+                // Add the count
+                namesCounts.put(name, 1);
+            }
+        }
+
 
 
         System.out.println();
@@ -67,7 +110,7 @@ public class MapProblems {
         System.out.println();
 		/*
 			Given the following map that tracks grades for students, where the key is the student id
-			and the value is their average grade, determines which student id has the highest and lowest score.
+			and the value is their average grade, determines which student id has the highest score.
 		 */
         Map<Integer, Integer> studentGradesByIds = new HashMap<Integer, Integer>();
         studentGradesByIds.put(10, 82);
@@ -75,6 +118,17 @@ public class MapProblems {
         studentGradesByIds.put(12, 97);
         studentGradesByIds.put(13, 48);
         studentGradesByIds.put(14, 88);
+
+        Map.Entry<Integer, Integer> highestGrade = null;
+        for (Map.Entry<Integer, Integer> student : studentGradesByIds.entrySet()) {
+           if (highestGrade == null) {
+               highestGrade = student;
+           } else {
+               if (student.getValue() > highestGrade.getValue()) {
+                   highestGrade = student;
+               }
+           }
+        }
 
 
 
@@ -97,6 +151,10 @@ public class MapProblems {
         myMap.put(6, null);
         myMap.put(7, "ghi");
         myMap.put(8, "jkl");
+
+        myMap.put(2, "default");
+        myMap.put(3, "default");
+        myMap.put(6, "default");
 
     }
 }
