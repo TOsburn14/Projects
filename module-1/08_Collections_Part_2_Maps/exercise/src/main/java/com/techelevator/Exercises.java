@@ -151,13 +151,13 @@ public class Exercises {
 		int peterPartnershipQuarter = 0;
 		int paulPartnershipQuarter = 0;
 
-		if ( peterValue > 50000 && paulValue > 100000){
+		if ( peterValue >= 5000 && paulValue >= 10000){
 			peterPartnershipQuarter = peterValue / 4;
 			peterPaul.put("Peter" , peterValue - peterPartnershipQuarter);
 			paulPartnershipQuarter = paulValue / 4;
 			peterPaul.put("Paul", paulValue - paulPartnershipQuarter);
 			peterPaulPartnership = peterPartnershipQuarter + paulPartnershipQuarter;
-
+			peterPaul.put("PeterPaulPartnership",peterPaulPartnership);
 		}
 		return peterPaul;
 	}
@@ -171,7 +171,13 @@ public class Exercises {
 	 * beginningAndEnding(["muddy", "good", "moat", "good", "night"]) → {"g": "d", "m": "t", "n": "t"}
 	 */
 	public Map<String, String> beginningAndEnding(String[] words) {
-		return null;
+		Map<String,String> firstLastMap = new HashMap<String, String>();
+		for (String newWords : words){
+		String firstLetter = newWords.substring(0,1);
+		String lastLetter = newWords.substring(newWords.length()-1);
+		firstLastMap.put(firstLetter,lastLetter);
+		}
+		return firstLastMap;
 	}
 
 	/*
