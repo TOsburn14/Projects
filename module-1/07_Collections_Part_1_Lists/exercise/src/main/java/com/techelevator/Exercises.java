@@ -158,7 +158,10 @@ public class Exercises {
      interleaveLists( [1, 2, 5, 8, 10], [4, 5, 6] )  ->  [1, 4, 2, 5, 5, 6, 8, 10]
      */
     public List<Integer> interleaveLists(List<Integer> listOne, List<Integer> listTwo) {
-        
+        List<Integer> finalList = new ArrayList<>();
+        for (int i = 0; i < listOne.toArray().length; i++) {
+            finalList += finalList.add()
+        }
         return null;
     }
 
