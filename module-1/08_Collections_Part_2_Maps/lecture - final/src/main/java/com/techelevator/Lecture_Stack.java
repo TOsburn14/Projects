@@ -1,5 +1,7 @@
 package com.techelevator;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Stack;
 
 public class Lecture_Stack {
@@ -76,8 +78,12 @@ public class Lecture_Stack {
         for (int num : nums) {
             numStack.push(num);
         }
+
+        List<Integer> reversedList = new ArrayList<Integer>();
         while ( !numStack.isEmpty() ) {
-            System.out.println(numStack.pop());
+            Integer number = numStack.pop();
+            reversedList.add(number);
+            System.out.println(number);
         }
 
     }

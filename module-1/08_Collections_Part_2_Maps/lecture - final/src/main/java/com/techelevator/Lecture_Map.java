@@ -4,6 +4,7 @@ import java.util.*;
 
 public class Lecture_Map {
 
+
 	public static void main(String[] args) {
 
 		System.out.println("####################");
@@ -11,13 +12,64 @@ public class Lecture_Map {
 		System.out.println("####################");
 		System.out.println();
 
+		Map<String, String> animalNoises = new HashMap<String, String>();
+
+		/*
+			To add a key / value pair to the map use put(key, value)
+		 */
+		animalNoises.put("Cow", "Moo");
+		animalNoises.put("Chicken", "Cluck");
+		animalNoises.put("Dog", "Bark");
+		animalNoises.put("Cat", "Meow");
+		animalNoises.put("Lion", "Roar");
+		animalNoises.put("Duck", "Roar");
+
+		/*
+			If use put() with a key that already exists, then the value for that key
+			is updated to the new value.
+		 */
+		animalNoises.put("Duck", "Quack");
+
+		/*
+			To get a value from the map use get(key)
+		 */
+		String noiseTheCatMakes = animalNoises.get("Cat");
+
+		/*
+			If the key doesn't exist in the map, get() returns null
+		 */
+		String wolfNoise = animalNoises.get("Wolf");
 
 
+		/*
+			Can remove a key / value from the map using remove(key), it will return
+			the value and then remove both the key and value from the map.
 
+			If the key does not exist in the map, remove() returns null
+		 */
+		String lionNoise = animalNoises.remove("Lion");
 
+		/*
+			can use containsKey(key) to see if a specific key exists in the map
+		 */
+		boolean doesDogExist = animalNoises.containsKey("Dog");
+		boolean doesLionExist = animalNoises.containsKey("Lion");
 
+		/*
+			can use containsValue(value) to see if a specific value exists in the map
+		 */
+		boolean doesValueMeowExist = animalNoises.containsValue("Meow");
 
+		/*
+			Can get the set of keys
+		 */
+		Set<String> mapKeys = animalNoises.keySet();
 
+		Set<Map.Entry<String, String>> mapEntries = animalNoises.entrySet();
+
+		for ( Map.Entry<String, String> entry : animalNoises.entrySet() ) {
+			System.out.println("The " + entry.getKey() + " says " + entry.getValue());
+		}
 
 		System.out.println();
 		System.out.println("####################");

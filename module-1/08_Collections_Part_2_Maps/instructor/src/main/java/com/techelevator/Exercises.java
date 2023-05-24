@@ -34,6 +34,9 @@ public class Exercises {
 	 *
 	 */
 	public String animalGroupName(String animalName) {
+
+//		animalMap.put("RHINO", "Crash");
+//		animalName.toUpperCase();
 		return null;
 	}
 
@@ -76,6 +79,12 @@ public class Exercises {
 	 *
 	 */
 	public Map<String, Integer> robPeterToPayPaul(Map<String, Integer> peterPaul) {
+		/*
+			Divide once then add and subtract
+			halfOfPeters = peterAmount / 2
+			newPaulAmount = paulAmount + halfOfPeters
+			newPetersAmount = petersAmount - halfOfPeters
+		 */
 		return null;
 	}
 
@@ -160,6 +169,10 @@ public class Exercises {
 	 */
 	public Map<String, Integer> consolidateInventory(Map<String, Integer> mainWarehouse,
 			Map<String, Integer> remoteWarehouse) {
+		/*
+			You don't need a new map
+			pick one (main or remote) - consolidate the other into it and return it
+		 */
 		return null;
 	}
 
