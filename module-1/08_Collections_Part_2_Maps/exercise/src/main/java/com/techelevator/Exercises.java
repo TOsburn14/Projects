@@ -1,6 +1,7 @@
 package com.techelevator;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class Exercises {
@@ -34,7 +35,32 @@ public class Exercises {
 	 *
 	 */
 	public String animalGroupName(String animalName) {
-		return null;
+		// animalMap.put("RHINO","Crash");
+		// animalName.toUpperCase();
+		Map<String,String> animalMap = new HashMap<String,String>();
+		animalMap.put("RHINO","Crash");
+		animalMap.put("GIRAFFE","Tower");
+		animalMap.put("ELEPHANT","Herd");
+		animalMap.put("LION","Pride");
+		animalMap.put("CROW","Murder");
+		animalMap.put("PIGEON","Kit");
+		animalMap.put("FLAMINGO","Pat");
+		animalMap.put("DEER","Herd");
+		animalMap.put("DOG","Pack");
+		animalMap.put("CROCODILE","Float");
+
+		if (animalName == null || animalName.length() == 0){
+			return "unknown";
+		}
+		if (!animalMap.containsKey(animalName.toUpperCase())){
+			return "unknown";
+		}
+
+		String upperCase = animalName.toUpperCase();
+
+		return animalMap.get(upperCase);
+
+
 	}
 
 	/*
@@ -60,7 +86,24 @@ public class Exercises {
 	 *
 	 */
 	public double isItOnSale(String itemNumber) {
-		return -1.0;
+		Map<String,Double> saleItems = new HashMap<String, Double>();
+		saleItems.put("KITCHEN4001",0.20);
+		saleItems.put("GARAGE1070",0.15);
+		saleItems.put("LIVINGROOM",0.10);
+		saleItems.put("KITCHEN6073",0.40);
+		saleItems.put("BEDROOM3434",0.60);
+		saleItems.put("BATH0073",0.15);
+
+		if (itemNumber == null || itemNumber.length() == 0){
+			return 0.00;
+		}
+		if (!saleItems.containsKey(itemNumber.toUpperCase())){
+			return 0.00;
+		}
+
+		String upperCase = itemNumber.toUpperCase();
+
+		return saleItems.get(upperCase);
 	}
 
 	/*
@@ -76,7 +119,20 @@ public class Exercises {
 	 *
 	 */
 	public Map<String, Integer> robPeterToPayPaul(Map<String, Integer> peterPaul) {
-		return null;
+		//If statement - if( peter > 0 && paul < 1000 ) then half paul >>> paul new amount >>> peter new amt
+		int peterValue = peterPaul.get("Peter");
+		int paulValue = peterPaul.get("Paul");
+		int transferAmount = 0;
+
+		if( peterValue > 0 && paulValue < 1000 ){
+			transferAmount = peterValue / 2;
+			peterPaul.put("Paul", paulValue + transferAmount);
+			peterPaul.put("Peter", peterValue - transferAmount);
+		}
+
+
+
+		return peterPaul;
 	}
 
 	/*
@@ -89,7 +145,21 @@ public class Exercises {
 	 *
 	 */
 	public Map<String, Integer> peterPaulPartnership(Map<String, Integer> peterPaul) {
-		return null;
+		int peterValue = peterPaul.get("Peter");
+		int paulValue = peterPaul.get("Paul");
+		int peterPaulPartnership = 0;
+		int peterPartnershipQuarter = 0;
+		int paulPartnershipQuarter = 0;
+
+		if ( peterValue > 50000 && paulValue > 100000){
+			peterPartnershipQuarter = peterValue / 4;
+			peterPaul.put("Peter" , peterValue - peterPartnershipQuarter);
+			paulPartnershipQuarter = paulValue / 4;
+			peterPaul.put("Paul", paulValue - paulPartnershipQuarter);
+			peterPaulPartnership = peterPartnershipQuarter + paulPartnershipQuarter;
+
+		}
+		return peterPaul;
 	}
 
 	/*
@@ -160,6 +230,10 @@ public class Exercises {
 	 */
 	public Map<String, Integer> consolidateInventory(Map<String, Integer> mainWarehouse,
 			Map<String, Integer> remoteWarehouse) {
+		/*
+		Dont need a new map
+		Pick one (Main or Remote) - Consolidate the other into it
+		 */
 		return null;
 	}
 

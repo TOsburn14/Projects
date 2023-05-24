@@ -160,7 +160,7 @@ public class Exercises {
     public List<Integer> interleaveLists(List<Integer> listOne, List<Integer> listTwo) {
         List<Integer> finalList = new ArrayList<>();
         for (int i = 0; i < listOne.toArray().length; i++) {
-            finalList += finalList.add()
+            finalList.add(listOne.size());
         }
         return null;
     }

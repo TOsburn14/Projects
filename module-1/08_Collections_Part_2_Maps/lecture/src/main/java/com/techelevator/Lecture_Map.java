@@ -11,13 +11,44 @@ public class Lecture_Map {
 		System.out.println("####################");
 		System.out.println();
 
+		Map<String, String> animalNoises = new HashMap<String, String>();
+		animalNoises.put("Cow","Moo");
+		animalNoises.put("Chicken","Cluck");
+		animalNoises.put("Dog","Bark");
+		animalNoises.put("Cat","Meow");
+		animalNoises.put("lion","Roar");
+		animalNoises.put("Duck","Roar");
 
+		/*
+		If use put() with a key that already exists, then the value for that key
+		is updated to the new value
+		 */
 
+		animalNoises.put("Duck","Quack");
 
+		// Get the value from the map, get(key)
+		String noiseTheDuckMakes = animalNoises.get("Duck");
 
+		//If key doesn't exist in map, get() returns null
+		String noiseWolfMakes = animalNoises.get("wolf");
 
+		//Remove key from map, remove(key). removes both key and value from map
+		String lionNoise = animalNoises.remove("Lion");
 
+		// Can use containsKey (key) to see if specific key exists in the map
+		boolean doesDogExist = animalNoises.containsKey("Dog");
+		boolean doesLionExist = animalNoises.containsKey("Lion");
 
+		//Can use containsValue (Value) to see if specific value exists in map
+		boolean doesValueMeowExist = animalNoises.containsValue("Meow");
+
+		//Can get the set of keys
+		Set<String> mapKeys = animalNoises.keySet();
+
+		Set<Map.Entry<String,String>> mapEntries = animalNoises.entrySet();
+		for( Map.Entry<String, String> entry : animalNoises.entrySet()){
+			System.out.println("The " + entry.getKey() + " says " + entry.getValue());
+		}
 
 		System.out.println();
 		System.out.println("####################");
