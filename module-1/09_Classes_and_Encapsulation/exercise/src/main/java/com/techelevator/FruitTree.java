@@ -15,12 +15,17 @@ public class FruitTree {
         return piecesOfFruitLeft;
     }
 
-    public FruitTree(String typeOfFruit, int startingPiecesOfFruit){
+    public FruitTree(String typeOfFruit, int startingPiecesOfFruit) {
         this.typeOfFruit = typeOfFruit;
         this.piecesOfFruitLeft = startingPiecesOfFruit;
     }
 
-    public boolean pickFruit (int numberOfPiecesToRemove){
-        if (piecesOfFruitLeft > numberOfPiecesToRemove)
+    public boolean pickFruit(int numberOfPiecesToRemove) {
+        if (this.piecesOfFruitLeft >= numberOfPiecesToRemove) {
+            this.piecesOfFruitLeft -= numberOfPiecesToRemove;
+            return true;
+        } else {
+            return false;
+        }
     }
 }
