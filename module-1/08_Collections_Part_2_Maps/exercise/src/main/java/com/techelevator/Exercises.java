@@ -294,16 +294,19 @@ public class Exercises {
         for (String xCount : words) {
             if (xCount.length() <= 2) {
                 finalMap.put(xCount, finalMap.get(xCount));
-            } else {
+            }
                 String lastTwoChar = xCount.substring(xCount.length() - 2);
+                int valueCounter = 0;
                 for (int i = 0; i < xCount.length()-2; i++) {
                     String nextPart = xCount.substring(i, i+2);
                     if(nextPart.equals(lastTwoChar)){
-                        finalMap.put(xCount,finalMap.get(xCount));
+                        valueCounter++;
                     }
                 }
+            finalMap.put(xCount,valueCounter);
             }
-        }
+
+
         return finalMap;
 }
 
