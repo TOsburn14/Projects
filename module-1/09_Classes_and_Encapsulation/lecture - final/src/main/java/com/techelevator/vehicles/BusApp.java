@@ -13,6 +13,10 @@ public class BusApp {
         Bus busTwo = new Bus();
         Bus busThree = new Bus("3rd Street Express");
 
+
+        System.out.println( busOne.equals(busTwo) );
+        System.out.println( busTwo.toString() );
+
         busOne.setRouteName("High Street");
         busTwo.setRouteName("Front Street");
 
