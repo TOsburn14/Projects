@@ -4,7 +4,7 @@ import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BankCustomer{
+public class BankCustomer {
     private String name;
     private String address;
     private String phoneNumber;
@@ -34,21 +34,23 @@ public class BankCustomer{
         this.phoneNumber = phoneNumber;
     }
 
-    public Accountable[] getAccounts(){
+    public Accountable[] getAccounts() {
         return accounts.toArray(new Accountable[0]);
     }
-    public void addAccount(Accountable newAccount){
+
+    public void addAccount(Accountable newAccount) {
         accounts.add(newAccount);
     }
 
-    public boolean isVip(){
+    public boolean isVip() {
         int totalValue = 0;
-        if (accounts.size() >= 25000){
-            totalValue += accounts.size();
+        for (Accountable accountLoop : accounts) {
+            totalValue += accountLoop.getBalance();
         }
-        if (totalValue >= 25000){
+        if (totalValue >= 25000) {
             return true;
         }
+
         return false;
     }
 }
