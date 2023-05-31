@@ -1,6 +1,6 @@
 package com.techelevator.printer;
 
-public class Fibonnaci {
+public class Fibonnaci implements Printable{
 
     private int highestNumber;
 
@@ -20,5 +20,10 @@ public class Fibonnaci {
             next = temp;
         }
 
+    }
+
+    @Override
+    public void print() {
+        showSequence();
     }
 }

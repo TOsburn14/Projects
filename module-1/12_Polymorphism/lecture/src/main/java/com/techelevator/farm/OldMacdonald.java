@@ -3,7 +3,13 @@ package com.techelevator.farm;
 public class OldMacdonald {
 	public static void main(String[] args) {
 
-		FarmAnimal[] farmAnimals = new FarmAnimal[] { new Cow(), new Chicken() };
+		Singable[] singers = new Singable[] {
+				(Singable) new Cow(), new Chicken(), (Singable) new Sheep()
+		};
+
+
+		FarmAnimal[] farmAnimals = new FarmAnimal[] {
+		new Cow(), new FarmAnimal(), new Sheep(),};
 
 		for (FarmAnimal animal : farmAnimals) {
 			String name = animal.getName();
@@ -15,5 +21,7 @@ public class OldMacdonald {
 			System.out.println("Here a " + sound + " there a " + sound + " everywhere a " + sound + " " + sound);
 			System.out.println();
 		}
+
+
 	}
 }

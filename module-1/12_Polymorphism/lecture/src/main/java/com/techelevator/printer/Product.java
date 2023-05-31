@@ -3,7 +3,7 @@ package com.techelevator.printer;
 import java.time.LocalDate;
 
 
-public class Product {
+public class Product implements Printable{
 
     private static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_RED = "\u001B[31m";
@@ -129,4 +129,8 @@ public class Product {
 
     }
 
+    @Override
+    public void print() {
+        displayProductDetails();
+    }
 }
