@@ -4,18 +4,31 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OldMacdonald {
+
 	public static void main(String[] args) {
 
 		Cow ourCow = new Cow();
 		MusicBox ourMusicBox = new MusicBox();
+		Cat ourCat = new Cat();
+//		TabbyCat tabbyCat = new TabbyCat();
+
+		System.out.println( Farm.getHarvestDate(6, 15, 72));
+
+		/*
+			FarmAnimal cannot be instantiated because it is abstract
+		 */
+		//FarmAnimal someAnimal = new FarmAnimal("","",0);
+
+		ourCow.wake();
+		//ourCat.sleep();
 
 		Singable[] singers = new Singable[] {
 				ourCow, new Chicken(), new Sheep(), new Tractor(),
-				ourMusicBox
+				ourMusicBox, ourCat
 		};
 
 		FarmAnimal[] farmAnimals = new FarmAnimal[] {
-				ourCow, new Chicken(), new Sheep()
+				ourCow, new Chicken(), new Sheep(), ourCat
 		};
 
 
