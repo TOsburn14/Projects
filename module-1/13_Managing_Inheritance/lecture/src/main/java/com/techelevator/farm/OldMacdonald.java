@@ -8,10 +8,17 @@ public class OldMacdonald {
 
 		Cow ourCow = new Cow();
 		MusicBox ourMusicBox = new MusicBox();
+		Cat ourCat = new Cat();
+		ourCow.sleep();
+		ourCat.sleep();
+		TabbyCat ourTabbyCat = new TabbyCat();
+
+		//FarmAnimal someAnimal = new FarmAnimal("","",0);
+		// FarmAnimal cannot be instantiated because it is abstract
 
 		Singable[] singers = new Singable[] {
 				ourCow, new Chicken(), new Sheep(), new Tractor(),
-				ourMusicBox
+				ourMusicBox, ourCat, ourTabbyCat
 		};
 
 		FarmAnimal[] farmAnimals = new FarmAnimal[] {

@@ -1,5 +1,7 @@
 package com.techelevator.farm;
 
+import java.security.PublicKey;
+
 public class Sheep extends FarmAnimal {
 
     public Sheep() {
@@ -10,4 +12,7 @@ public class Sheep extends FarmAnimal {
         System.out.println("The sheep jumped!");
     }
 
+    public void eat() {
+        System.out.println("The sheep bites");
+    }
 }
