@@ -23,7 +23,7 @@ public class CreditCardAccount implements Accountable{
     }
 
     //Constructor
-    public CreditCardAccount(String accountHolder,String accountNumber){
+   public CreditCardAccount(String accountHolder,String accountNumber){
         this.accountHolder = accountHolder;
         this.accountNumber = accountNumber;
     }
