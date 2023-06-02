@@ -10,4 +10,8 @@ public class Sheep extends FarmAnimal {
         System.out.println("The sheep jumped!");
     }
 
+    @Override
+    public void eat() {
+        System.out.println("The sheep grazes");
+    }
 }

@@ -6,4 +6,8 @@ public class Cow extends FarmAnimal {
 		super("Cow", "moo!", 2500);
 	}
 
+	@Override
+	public void eat() {
+		System.out.println("The cow chews!");
+	}
 }
