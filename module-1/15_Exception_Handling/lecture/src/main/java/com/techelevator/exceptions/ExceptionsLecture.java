@@ -9,10 +9,22 @@ public class ExceptionsLecture {
 
     public static void main(String[] args) {
 
-        System.out.print("Input a whole number >>> ");
-        String userSelection = input.nextLine();
+        int number = 0;
 
-        int number = Integer.parseInt(userSelection);
+        while (true) {
+            System.out.print("Input a whole number >>> ");
+            String userSelection = input.nextLine();
+
+
+
+            try {
+                number = Integer.parseInt(userSelection);
+                System.out.println("This only prints when there is no exception");
+                break;
+            } catch (NumberFormatException e) {
+                System.out.println("A number is required");
+            }
+        }
 
 
         System.out.println("Your number was " + number);
