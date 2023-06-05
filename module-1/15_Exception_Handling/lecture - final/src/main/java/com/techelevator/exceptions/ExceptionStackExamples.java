@@ -37,8 +37,8 @@ public class ExceptionStackExamples {
      */
     private static void methodC() {
         System.out.println("methodC start");
-//        String str = null;
-//        str.toUpperCase();
+        String str = null;
+        str.toUpperCase();
         System.out.println("methodC end");
     }
 

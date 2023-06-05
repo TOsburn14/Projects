@@ -16,9 +16,14 @@ public class TypesOfExceptions {
     }
 
     public void run() {
-        //throwsARuntimeException();
+        throwsARuntimeException();
 
-        //throwsACheckedException();
+        try {
+            throwsACheckedException();
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found!");
+        }
+
     }
 
     /*
