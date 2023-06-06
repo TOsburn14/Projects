@@ -10,12 +10,13 @@ public class CheckingAccount implements Account {
     }
 
     @Override
-    public int withdraw(int amount) {
+    public int withdraw(int amount) throws InsufficientMinimumBalanceException {
 
         // If the balance goes below the $500 minimum add a $10 fee
         balance -= amount;
         if (balance < 500) {
             balance -= 10;
+            throw new InsufficientMinimumBalanceException("Balance below minimum", 10);
         }
 
         return balance;

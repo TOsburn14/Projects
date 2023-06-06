@@ -160,8 +160,13 @@ public class LectureTest {
         expectedResult.put("Peter", 1000);
         expectedResult.put("Paul", 1099);
 
+
         // Act (test)
         Map<String, Integer> actualResult = lecture.robPeterToPayPaul(testMap);
+
+//        Assert.assertEquals(1000, actualResult.get("Peter"), 0.009);
+//        Assert.assertEquals(1099, actualResult.get("Paul"), 0.009);
+
 
         // Assert
           /*

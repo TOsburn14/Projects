@@ -14,7 +14,11 @@ public class BankApplication {
 
         int amount = menu.getAmountFromUser();
 
-        account.withdraw(amount);
+       try {
+            account.withdraw(amount);
+        } catch (InsufficientMinimumBalanceException e) {
+            menu.showUserFeeWasAdded(e.getFeeAmount());
+        }
 
         menu.showWithdrawSucceessMessage(amount);
 

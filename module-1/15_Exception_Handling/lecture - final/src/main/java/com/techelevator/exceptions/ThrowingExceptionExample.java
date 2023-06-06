@@ -7,7 +7,7 @@ package com.techelevator.exceptions;
  */
 public class ThrowingExceptionExample {
 
-    public static void main(String[] args) {
+    public static void main(String[] args)  {
         handlesTheCheckedException();
 
         try {
@@ -39,8 +39,6 @@ public class ThrowingExceptionExample {
     public static void passesOnTheCheckedException() throws IncorrectStringValueException {
         throwsCustomException("abc");
     }
-
-
 
     /*
     The Throws keyword indicates that this method may throw a checked exception
