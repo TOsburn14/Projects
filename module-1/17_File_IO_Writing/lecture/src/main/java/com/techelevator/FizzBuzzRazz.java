@@ -1,5 +1,9 @@
 package com.techelevator;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 
@@ -26,11 +30,44 @@ public class FizzBuzzRazz {
         System.out.print("Output file: ");
         String outputFileName = userInput.nextLine();
 
+        //File a file object for the input file
+        File inputFile = new File(inputFileName);
 
+        // Create a file object for the output file
+        File outputFile = new File(outputFileName);
 
+        // Open the input file with a try-with-resource
+        try (Scanner inputFileScanner = new Scanner(inputFile);
+             PrintWriter outputFileWriter = new PrintWriter(outputFile)) {
+            //While file has next line
+            while (inputFileScanner.hasNextLine()) {
+                String lineFromFile = inputFileScanner.nextLine();
 
+                // Process the line from the file to determine the new line we want to write
+                // to the output file
+                String newLineToWrite = "";
+                String[] words = lineFromFile.split(" ");
+                for (String word : words) {
+                    if (word.length() == 3) {
+                        newLineToWrite += "Fizz";
+                    } else if (word.length() == 5) {
+                        newLineToWrite += "Buzz";
+                    } else if (word.length() == 7) {
+                        newLineToWrite += "Razz";
+                    }else {
+                        newLineToWrite += word;
+                    }
+                    newLineToWrite += " ";
+                }
+
+                // Write the line to the output file
+                outputFileWriter.println(newLineToWrite);
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println(inputFile.getName() + " was not found.");
+
+        }
     }
-
 
 
 }
