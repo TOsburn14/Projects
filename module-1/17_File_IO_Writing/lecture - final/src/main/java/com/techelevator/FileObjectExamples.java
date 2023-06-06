@@ -83,7 +83,6 @@ public class FileObjectExamples {
 		System.out.println("Can you Write to the File: " + newFile.canWrite());
 		System.out.println("Can you Execute the File: " + newFile.canExecute());
 
-
 	}
 
 	private static void doesFileOrFolderExist(File file) {
