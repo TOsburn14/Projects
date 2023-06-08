@@ -17,7 +17,7 @@ public class Exercise03_Shirts {
     buildOrder() → ['S', 'S', 'S', 'M', 'M', 'L']
      */
     public char[] buildOrder() {
-        char[] shirtOrder = {'S', 'S', 'S', 'M', 'M', 'L'};
+        char shirtOrder = {'S', 'S', 'S', 'M', 'M', 'L'};
         return shirtOrder;
     }
 
