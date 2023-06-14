@@ -1,25 +1,20 @@
 package com.techelevator;
-
-import org.junit.Before;
-import org.junit.Test;
-
-
+import org.junit.*;
 public class MovieRentalTests {
-    private MovieRental target;
+    private MovieRental movieRental;
+
 
     @Before
     public void setup(){
-        target = new MovieRental();
+        movieRental = new MovieRental("Test","DVD",true);
     }
-
     @Test
-    public void does_this_thing_work(){
-        String title = "Star Wars";
-        String format = "VHS";
-        boolean isPremium = true;
-        double expected = 1.99;
-        double result = target.priceOfRental(format,isPremium);
-        //Ha. It actually freaking works
-        }
+    public void rental_price_for_premium_dvd(){
+        Assert.assertEquals(2.99,movieRental.getRentalPrice(),0.009);
+    }
+    @Test
+    public void calculate_late_fee_3_days(){
+        Assert.assertEquals(19.99,movieRental.calculateLateFee(3),0.009);
     }
 
+}
