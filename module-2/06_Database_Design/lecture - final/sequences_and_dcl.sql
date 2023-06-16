@@ -62,7 +62,7 @@ INSERT INTO ourtable (id, name) VALUES (DEFAULT, 'Matt');
 INSERT INTO ourtable (name) VALUES ('John');
 
 -- Insert into the table with a sequence with a manual value  (CHANGE XX to the next correct value)
-INSERT INTO ourtable (id, name) VALUES ( 5 , 'Dan');
+INSERT INTO ourtable (id, name) VALUES ( 8 , 'Dan');
 
 -- Try to insert another value using DEFAULT or a SubQuery or by Omitting the column in the insert
 INSERT INTO ourtable (id, name) VALUES (DEFAULT, 'Vinny');
@@ -98,19 +98,19 @@ SELECT * FROM ourtable;
 -- ***************************************
 
 -- Create a new user
-CREATE USER rachelle WITH PASSWORD '123';
+CREATE USER steve WITH PASSWORD '123';
 
 -- GRANT access to the user to SELECT from ourtable
-GRANT SELECT ON ourtable TO rachelle;
+GRANT SELECT ON ourtable TO steve;
 
 -- GRANT access to the user to INSERT into ourtable
-GRANT INSERT ON ourtable TO rachelle ;
+GRANT INSERT ON ourtable TO steve ;
 
 -- GRANT the user access to use the sequence used by ourtable
-GRANT USAGE, SELECT ON SEQUENCE ourtable_id_seq TO rachelle;
+GRANT USAGE, SELECT ON SEQUENCE ourtable_id_seq TO steve;
 
 -- REVOKE the user's access to SELECT from ourtable
-REVOKE SELECT ON ourtable FROM rachelle;
+REVOKE SELECT ON ourtable FROM steve;
 
 
 SELECT * FROM ourtable;
