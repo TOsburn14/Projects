@@ -11,6 +11,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JdbcParkDao implements ParkDao {
+    private final JdbcTemplate jdbcTemplate;
+
+    public JdbcParkDao(DataSource dataSource) {
+        jdbcTemplate = new JdbcTemplate(dataSource);
+    }
 
 
     @Override
@@ -25,21 +30,56 @@ public class JdbcParkDao implements ParkDao {
     
     @Override
     public double getAvgParkArea() {
-        return 0.0;
+        double averageParkArea = 0;
+        String sql = "SELECT AVG(area) AS avg_area FROM park";
+
+        SqlRowSet rows = jdbcTemplate.queryForRowSet(sql);
+
+        if (rows.next()) {
+            averageParkArea = rows.getDouble("avg_area");
+        }
+
+
+        return averageParkArea;
     }
     
     @Override
     public List<String> getParkNames() {
-        return new ArrayList<>();
+        List<String> listOfParkNames = new ArrayList<>();
+
+        String sql = "SELECT park_name FROM park;";
+
+        SqlRowSet rows = jdbcTemplate.queryForRowSet(sql);
+
+        while (rows.next()){
+            String parkName = rows.getString("park_name");
+            listOfParkNames.add(parkName);
+        }
+
+        return listOfParkNames;
     }
     
     @Override
     public Park getRandomPark() {
+        String sql = "SELECT park_id, park_name, date_established FROM park ORDER BY RANDOM() LIMIT 1;";
+
+        SqlRowSet rows = jdbcTemplate.queryForRowSet(sql);
+
+        while (rows.next()){
+            Park park = new Park();
+            park.setParkId(rows.getInt("park_id"));
+            park.setParkName(rows.getString("park_name"));
+
+            if ( rows.getDate("date_established") != null){
+                park.setDateEstablished(rows.getDate("date_established").toLocalDate());
+            }
+        }
         return new Park();
     }
 
     @Override
     public List<Park> getParksWithCamping() {
+
         return new ArrayList<>();
     }
 
