@@ -46,7 +46,7 @@ public class JdbcCityDao implements CityDao {
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
 		if (results.next()) {
 			population = results.getInt("population");
-		} 
+		}
         return population;
     }
 
@@ -101,7 +101,7 @@ public class JdbcCityDao implements CityDao {
         List<City> cities = new ArrayList<>();
         String sql = "SELECT city_id, city_name, state_abbreviation, population, area " +
                      "FROM city " +
-                     "WHERE state_abbreviation = ?;";
+                     "WHERE state_abbreviation = ?";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, stateAbbreviation);
         while (results.next()) {
             cities.add(mapRowToCity(results));
