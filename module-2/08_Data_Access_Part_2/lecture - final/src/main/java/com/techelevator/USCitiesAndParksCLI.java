@@ -152,7 +152,14 @@ public class USCitiesAndParksCLI {
 
     private int getParkCount() {
         int parkCount = 0;
-        parkCount = parkDao.getParkCount();
+        try {
+            parkCount = parkDao.getParkCount();
+        } catch (DaoException e) {
+            displayError( "Error: " + e.getMessage() );
+
+            // Can get to the original exception using the getCause() method
+            //e.getCause().printStackTrace();
+        }
         return parkCount;
     }
 
