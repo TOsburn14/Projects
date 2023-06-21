@@ -8,7 +8,7 @@ import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.List;
 
-public class JdbcCollectionDao implements CollectionDao{
+public class JdbcCollectionDao implements CollectionDao {
 
     private final JdbcTemplate jdbcTemplate;
 
@@ -33,17 +33,34 @@ public class JdbcCollectionDao implements CollectionDao{
     @Override
     public Collection getCollectionById(int id) {
         Collection collection = null;
-        String sql = "SELECT collection_id FROM collection WHERE collection_name = ?";
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql,id);
-        while (results.next()){
-        collection = results.getObject("collection_id",id);
+        String sql = "SELECT collection_id, collection_name FROM collection WHERE collection_id = ?";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, id);
+        while (results.next()) {
+            collection = mapRowToCollection(results);
 
         }
-        return new Collection(-1, "Not implemented yet");
+        return collection;
     }
 
     @Override
     public List<Collection> getCollectionsByName(String name, boolean useWildCard) {
-        return null;
+        List<Collection> collection = new ArrayList<>();
+        String sql = "SELECT collection_id, collection_name FROM collection WHERE collection_name ILIKE ?";
+        String entry = name;
+        if (useWildCard) {
+            entry = "%" + name + "%";
+        }
+        SqlRowSet result = jdbcTemplate.queryForRowSet(sql, entry);
+        while (result.next()) {
+            collection.add(mapRowToCollection(result));
+        }
+        return collection;
+    }
+
+    private Collection mapRowToCollection(SqlRowSet sqlRowSet) {
+        Collection collection = new Collection();
+        collection.setId(sqlRowSet.getInt("collection_id"));
+        collection.setName(sqlRowSet.getString("collection_name"));
+        return collection;
     }
 }
