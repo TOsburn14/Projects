@@ -29,12 +29,16 @@ public class JdbcDepartmentDao implements DepartmentDao {
 		Department department = null;
 		String sql = DEPARTMENT_SELECT +
 				" WHERE d.department_id=?";
-
-		SqlRowSet results = jdbcTemplate.queryForRowSet(sql, id);
-		if (results.next()) {
-			department = mapRowToDepartment(results);
+		try {
+			SqlRowSet results = jdbcTemplate.queryForRowSet(sql, id);
+			if (results.next()) {
+				department = mapRowToDepartment(results);
+			}
+		} catch (CannotGetJdbcConnectionException e) {
+			throw new DaoException("Unable to connect to server or database",e);
+		}catch (BadSqlGrammarException e){
+			throw new DaoException("SQL syntax error",e);
 		}
-
 		return department;
 	}
 
@@ -42,28 +46,75 @@ public class JdbcDepartmentDao implements DepartmentDao {
 	public List<Department> getDepartments() {
 		List<Department> departments = new ArrayList<>();
 		String sql = DEPARTMENT_SELECT;
-
-		SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
-		while (results.next()) {
-			departments.add(mapRowToDepartment(results));
+		try {
+			SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+			while (results.next()) {
+				departments.add(mapRowToDepartment(results));
+			}
+		} catch (CannotGetJdbcConnectionException e) {
+			throw new DaoException("Unable to connect to server or database",e);
+		}catch (BadSqlGrammarException e){
+			throw new DaoException("SQL syntax error",e);
 		}
-		
 		return departments;
 	}
 
 	@Override
 	public Department createDepartment(Department department) {
-		throw new DaoException("createDepartment() not implemented");
+		String sql = "INSERT INTO department (name) VALUES (?) RETURNING department_id";
+		try {
+			int departmentId = jdbcTemplate.queryForObject(sql, int.class, department.getName());
+			department.setId(departmentId);
+		} catch (CannotGetJdbcConnectionException e){
+			throw new DaoException("Unable to connect to server or database",e);
+		}catch (BadSqlGrammarException e){
+			throw new DaoException("SQL syntax error",e);
+		}catch (DataIntegrityViolationException e){
+			throw new DaoException("Data Integrity violation",e);
+		}
+		return department;
 	}
 
 	@Override
 	public Department updateDepartment(Department department) {
-		throw new DaoException("updateDepartment() not implemented");
+		String sql = "UPDATE department SET name = ? WHERE department_id = ?;";
+		try {
+			int numberOfRows = jdbcTemplate.update(sql, department.getName(),department.getId());
+
+			if (numberOfRows == 0) {
+				throw new DaoException("Zero rows affected, expected at least one");
+			} else {
+				getDepartmentById(department.getId());
+			}
+		} catch (CannotGetJdbcConnectionException e) {
+			throw new DaoException("Unable to connect to server or database", e);
+		} catch (BadSqlGrammarException e) {
+			throw new DaoException("SQL syntax error", e);
+		} catch (DataIntegrityViolationException e) {
+			throw new DaoException("Data integrity violation", e);
+		}
+
+		return department;
 	}
 
 	@Override
 	public int deleteDepartmentById(int id) {
-		throw new DaoException("updateDepartment() not implemented");
+		int numberOfRows = 0;
+		String sql = "DELETE FROM department WHERE department_id = ?;";
+		String sql2 = "UPDATE employee SET department_id = 0 WHERE department_id = ?;";
+		try {
+			jdbcTemplate.update(sql2,id);
+			numberOfRows = jdbcTemplate.update(sql, id);
+		} catch (CannotGetJdbcConnectionException e) {
+			throw new DaoException("Unable to connect to server or database", e);
+		} catch (BadSqlGrammarException e) {
+			throw new DaoException("SQL syntax error", e);
+		} catch (DataIntegrityViolationException e) {
+			throw new DaoException("Data integrity violation", e);
+		}
+
+		return numberOfRows;
+
 	}
 
 	private Department mapRowToDepartment(SqlRowSet results) {
