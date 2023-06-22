@@ -38,7 +38,7 @@ public class JdbcEmployeeDao implements EmployeeDao {
                 employee = mapRowToEmployee(results);
             }
         } catch (CannotGetJdbcConnectionException e) {
-            throw new DaoException("Unable to connect to server or database");
+            throw new DaoException("Unable to connect to server or database", e);
         } catch (BadSqlGrammarException e) {
             throw new DaoException("SQL syntax error", e);
         }
@@ -74,10 +74,10 @@ public class JdbcEmployeeDao implements EmployeeDao {
                 Employee employeeResult = mapRowToEmployee(results);
                 allEmployees.add(employeeResult);
             }
-        } catch (CannotGetJdbcConnectionException e){
-            throw new DaoException("Unable to connect to server or database",e);
-        } catch (BadSqlGrammarException e){
-            throw new DaoException("SQL syntax error",e);
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        } catch (BadSqlGrammarException e) {
+            throw new DaoException("SQL syntax error", e);
         }
         return allEmployees;
     }
@@ -94,10 +94,10 @@ public class JdbcEmployeeDao implements EmployeeDao {
                 Employee employeeResult = mapRowToEmployee(results);
                 allEmployees.add(employeeResult);
             }
-        } catch (CannotGetJdbcConnectionException e){
-            throw new DaoException("Unable to connect to server or database",e);
-        } catch (BadSqlGrammarException e){
-            throw new DaoException("SQL syntax error",e);
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        } catch (BadSqlGrammarException e) {
+            throw new DaoException("SQL syntax error", e);
         }
         return allEmployees;
     }
@@ -113,10 +113,10 @@ public class JdbcEmployeeDao implements EmployeeDao {
                 Employee employeeResult = mapRowToEmployee(results);
                 allEmployees.add(employeeResult);
             }
-        } catch (CannotGetJdbcConnectionException e){
+        } catch (CannotGetJdbcConnectionException e) {
             throw new DaoException("Unable to connect to server or database");
-        }catch (BadSqlGrammarException e){
-            throw new DaoException("SQL syntax error",e);
+        } catch (BadSqlGrammarException e) {
+            throw new DaoException("SQL syntax error", e);
         }
         return allEmployees;
     }
@@ -125,15 +125,15 @@ public class JdbcEmployeeDao implements EmployeeDao {
     public Employee createEmployee(Employee employee) {
         String sql = "INSERT INTO employee (department_id, first_name, last_name, birth_date, hire_date) VALUES (?, ?, ?, ?, ?) RETURNING employee_id;";
         try {
-            int employeeId = jdbcTemplate.queryForObject(sql, int.class,employee.getDepartmentId(),employee.getFirstName(),
-                    employee.getLastName(),employee.getBirthDate(),employee.getHireDate());
+            int employeeId = jdbcTemplate.queryForObject(sql, int.class, employee.getDepartmentId(), employee.getFirstName(),
+                    employee.getLastName(), employee.getBirthDate(), employee.getHireDate());
             employee.setId(employeeId);
-        } catch (CannotGetJdbcConnectionException e){
-            throw new DaoException("Unable to connect to server or database",e);
-        }catch (BadSqlGrammarException e){
-            throw new DaoException("SQL syntax error",e);
-        }catch (DataIntegrityViolationException e){
-            throw new DaoException("Data Integrity violation",e);
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        } catch (BadSqlGrammarException e) {
+            throw new DaoException("SQL syntax error", e);
+        } catch (DataIntegrityViolationException e) {
+            throw new DaoException("Data Integrity violation", e);
         }
         return employee;
     }
@@ -142,12 +142,12 @@ public class JdbcEmployeeDao implements EmployeeDao {
     public Employee updateEmployee(Employee employee) {
         String sql = "UPDATE employee SET department_id = ?, first_name = ?, last_name = ?, birth_date = ?, hire_date = ? WHERE employee_id = ?;";
         try {
-            int numberOfRows = jdbcTemplate.update(sql,employee.getDepartmentId(),employee.getFirstName(),employee.getLastName(),
-                    employee.getBirthDate(),employee.getHireDate(),employee.getId());
+            int numberOfRows = jdbcTemplate.update(sql, employee.getDepartmentId(), employee.getFirstName(), employee.getLastName(),
+                    employee.getBirthDate(), employee.getHireDate(), employee.getId());
 
-            if (numberOfRows == 0){
+            if (numberOfRows == 0) {
                 throw new DaoException("Zero rows affected, expected at least one");
-            }else {
+            } else {
                 getEmployeeById(employee.getId());
             }
         } catch (CannotGetJdbcConnectionException e) {
@@ -166,7 +166,7 @@ public class JdbcEmployeeDao implements EmployeeDao {
         String sql = "DELETE FROM employee WHERE employee_id = ?;";
         String sql2 = "DELETE FROM project_employee WHERE employee_id = ?;";
         try {
-            jdbcTemplate.update(sql2,id);
+            jdbcTemplate.update(sql2, id);
             numberOfRows = jdbcTemplate.update(sql, id);
         } catch (CannotGetJdbcConnectionException e) {
             throw new DaoException("Unable to connect to server or database", e);
@@ -186,7 +186,7 @@ public class JdbcEmployeeDao implements EmployeeDao {
         String sql = "DELETE FROM employee WHERE department_id = ?;";
         String sql2 = "DELETE FROM project_employee WHERE employee_id IN (SELECT employee_id FROM employee WHERE department_id = ?)";
         try {
-            jdbcTemplate.update(sql2,departmentId);
+            jdbcTemplate.update(sql2, departmentId);
             numberOfRows = jdbcTemplate.update(sql, departmentId);
         } catch (CannotGetJdbcConnectionException e) {
             throw new DaoException("Unable to connect to server or database", e);
