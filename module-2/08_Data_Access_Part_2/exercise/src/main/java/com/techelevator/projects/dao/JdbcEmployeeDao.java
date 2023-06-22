@@ -140,7 +140,9 @@ public class JdbcEmployeeDao implements EmployeeDao {
 
     @Override
     public Employee updateEmployee(Employee employee) {
-        String sql = "UPDATE employee SET department_id = ?, first_name = ?, last_name = ?, birth_date = ?, hire_date = ? WHERE employee_id = ?;";
+        String sql = "UPDATE employee " +
+                "SET department_id = ?, first_name = ?, last_name = ?, birth_date = ?, hire_date = ? " +
+                "WHERE employee_id = ?;";
         try {
             int numberOfRows = jdbcTemplate.update(sql, employee.getDepartmentId(), employee.getFirstName(), employee.getLastName(),
                     employee.getBirthDate(), employee.getHireDate(), employee.getId());

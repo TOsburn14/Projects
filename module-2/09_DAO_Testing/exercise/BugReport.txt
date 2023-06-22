@@ -1,35 +1,36 @@
 Bug 1
 -----
 Test that demonstrates problem:
-
+getTimesheetsByProjectId_returns_list_of_all_timesheets_for_project
 Expected output:
-
+timesheet 1 should return when the corresponding projectId is called.
 Actual output:
-
+returns the result based on employee_id, not project_id
 How did you fix this bug?
-
+Replaced within the code "WHERE employee_id = ?" with "WHERE project_id = ?"
 
 Bug 2
 -----
 Test that demonstrates problem:
-
+getTimesheetsByEmployeeId_returns_list_of_all_timesheets_for_employee
 Expected output:
-
+Test should return 2 timesheets for employee_id 1
 Actual output:
-
+Test only returns a single timesheet for the employee
 How did you fix this bug?
-
+The code used an IF statement instead of a WHILE loop that would require the loop to restart and run again until the cursor doesn't
+have a row.
 
 Bug 3
 -----
 Test that demonstrates problem:
-
+getBillableHours_returns_correct_total
 Expected output:
-
+The billable hours should not be totaled if billable is set to false
 Actual output:
-
+The hours for the employee working on his project were added regardless of billable status
 How did you fix this bug?
-
+added within the WHERE statement "AND billable = true"
 
 Bug 4
 -----
