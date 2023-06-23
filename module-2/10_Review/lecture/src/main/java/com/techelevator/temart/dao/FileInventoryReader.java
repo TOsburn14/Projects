@@ -8,7 +8,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-public class FileInventoryReader {
+public class FileInventoryReader implements InventoryDao{
 
     private String filename;
 
