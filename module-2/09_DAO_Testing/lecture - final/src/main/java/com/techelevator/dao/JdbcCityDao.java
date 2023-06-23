@@ -109,6 +109,7 @@ public class JdbcCityDao implements CityDao {
     public int deleteCityById(int cityId) {
         int numberOfRows = 0;
         String sql = "DELETE FROM city WHERE city_id = ?;";
+
         try {
             numberOfRows = jdbcTemplate.update(sql, cityId);
         } catch (CannotGetJdbcConnectionException e) {
