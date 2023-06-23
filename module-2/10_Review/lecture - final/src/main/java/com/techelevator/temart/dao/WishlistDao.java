@@ -10,6 +10,6 @@ public interface WishlistDao {
     Wishlist getById(int id);
     Wishlist create(Wishlist wishlist);
     void update(Wishlist wishlist);
-    void delete(Wishlist wishlist);
+    void delete(int id);
 
 }

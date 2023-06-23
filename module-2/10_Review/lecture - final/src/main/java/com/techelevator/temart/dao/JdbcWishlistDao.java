@@ -28,6 +28,39 @@ public class JdbcWishlistDao implements WishlistDao {
         return wishlists;
     }
 
+    @Override
+    public Wishlist getById(int id) {
+        Wishlist wishlist = null;
+        SqlRowSet rows = jdbcTemplate.queryForRowSet(SELECT_FROM_WISHLIST + " WHERE id = ?", id);
+        if (rows.next()) {
+            wishlist = mapRowToWishlist(rows);
+        }
+        return wishlist;
+    }
+
+    @Override
+    public Wishlist create(Wishlist wishlist) {
+        String sql = "INSERT INTO wish_list (name, date_created) VALUES (?, ?) RETURNING id";
+        int newId = jdbcTemplate.queryForObject(sql, int.class, wishlist.getName(), wishlist.getDateCreated());
+        wishlist.setId(newId);
+        return wishlist;
+    }
+
+    @Override
+    public void update(Wishlist wishlist) {
+        String sql = "UPDATE wish_list SET name = ? WHERE id = ?";
+        jdbcTemplate.update(sql, wishlist.getName(), wishlist.getId());
+    }
+
+    @Override
+    public void delete(int id) {
+        String sqlToDeleteProductLink = "DELETE FROM product_wish_list WHERE wish_list_id = ?";
+        String sqlToDeleteWishlist = "DELETE FROM wish_list WHERE id = ?";
+        jdbcTemplate.update(sqlToDeleteProductLink, id);
+        jdbcTemplate.update(sqlToDeleteWishlist, id);
+    }
+
+
     private Wishlist mapRowToWishlist(SqlRowSet rows) {
         Wishlist wishlist = new Wishlist();
         wishlist.setId( rows.getInt("id") );
@@ -36,25 +69,5 @@ public class JdbcWishlistDao implements WishlistDao {
             wishlist.setDateCreated( rows.getTimestamp("date_created").toLocalDateTime());
         }
         return wishlist;
-    }
-
-    @Override
-    public Wishlist getById(int id) {
-        return null;
-    }
-
-    @Override
-    public Wishlist create(Wishlist wishlist) {
-        return null;
-    }
-
-    @Override
-    public void update(Wishlist wishlist) {
-
-    }
-
-    @Override
-    public void delete(Wishlist wishlist) {
-
     }
 }
