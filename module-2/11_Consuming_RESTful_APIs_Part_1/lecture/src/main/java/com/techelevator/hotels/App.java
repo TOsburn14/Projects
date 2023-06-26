@@ -1,10 +1,15 @@
 package com.techelevator.hotels;
 
+import com.techelevator.hotels.model.Country;
+import com.techelevator.hotels.model.Hotel;
+import com.techelevator.hotels.model.Review;
 import com.techelevator.hotels.services.ConsoleService;
 import com.techelevator.hotels.services.HotelService;
 
 public class App {
 
+    public static final int LIST_HOTELS = 1;
+    public static final int LIST_REVIEWS = 2;
     private final ConsoleService consoleService = new ConsoleService();
     private final HotelService hotelService = new HotelService();
 
@@ -23,18 +28,24 @@ public class App {
             /*
                 This code is not readable - how could we improve it?
              */
-            if (menuSelection == 1) {
-                System.out.println("Not implemented");
-            } else if (menuSelection == 2) {
-                System.out.println("Not implemented");
+            if (menuSelection == LIST_HOTELS) {
+                Hotel[] hotels = hotelService.listHotels();
+                consoleService.printHotels(hotels);
+            } else if (menuSelection == LIST_REVIEWS) {
+                Review[] reviews = hotelService.listReviews();
+                consoleService.printReviews(reviews);
             } else if (menuSelection == 3) {
-                System.out.println("Not implemented");
+                Hotel hotelWithId1 = hotelService.getHotelById(1);
+                consoleService.printHotel(hotelWithId1);
             } else if (menuSelection == 4) {
-                System.out.println("Not implemented");
+                Review[] reviewForHotel1 = hotelService.getReviewsByHotelId(1);
+                consoleService.printReviews(reviewForHotel1);
             } else if (menuSelection == 5) {
-                System.out.println("Not implemented");
+                Hotel[] hotelWtih3Stars = hotelService.getHotelsByStarRating(3);
+                consoleService.printHotels(hotelWtih3Stars);
             } else if (menuSelection == 6) {
-                System.out.println("Not implemented - Create a custom Web API query here");
+                Country country = hotelService.getWithCustomQuery();
+                System.out.println(country);
             } else if (menuSelection == 0) {
                 continue;
             } else {
