@@ -67,7 +67,7 @@ INSERT INTO product(
 	VALUES ('B02', 4, 'Test Book 2', 'Test Book 2 Description - nontaxable', 'N', 39.95, 5, false);
 
 -- Insert wishlists
-INSERT INTO wish_list (name, date_created) VALUES ('Test Wishlist 1', '2022-06-15');    -- id 1
+INSERT INTO wish_list (name, date_created) VALUES ('Test Wishlist 1', '2022-06-15T10:15');    -- id 1
 INSERT INTO wish_list (name, date_created) VALUES ('Test Wishlist 2', '2022-07-01');    -- id 2
 INSERT INTO wish_list (name, date_created) VALUES ('Test Wishlist 3', '2022-07-04');    -- id 3
 
