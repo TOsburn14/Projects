@@ -1,7 +1,13 @@
 package com.techelevator.temart;
 
+import com.techelevator.temart.dao.FileInventoryReader;
+import com.techelevator.temart.dao.InventoryDao;
+import com.techelevator.temart.dao.JdbcInventoryDao;
+import com.techelevator.temart.exception.DaoException;
 import com.techelevator.temart.model.StoreItem;
 import com.techelevator.temart.view.Menu;
+import org.apache.commons.dbcp2.BasicDataSource;
+import org.springframework.dao.DataIntegrityViolationException;
 
 import java.io.FileNotFoundException;
 import java.util.Map;
@@ -24,12 +30,19 @@ public class TEMartApplication {
 
     public void run() {
 
+
+        BasicDataSource dataSource = new BasicDataSource();
+        dataSource.setUrl("jdbc:postgresql://localhost:5432/temart");
+        dataSource.setUsername("postgres");
+        dataSource.setPassword("postgres1");
+
         while (true) {
             String inventoryFilename = menu.getInventoryFileFromUser();
+            InventoryDao inventoryReader = new JdbcInventoryDao(dataSource);//new FileInventoryReader(inventoryFilename);
             try {
-                store = new Store(inventoryFilename);
+                store = new Store(inventoryReader);
                 break;
-            } catch (FileNotFoundException e) {
+            } catch (DaoException e) {
                 menu.tellUserFileNotFound();
             }
         }

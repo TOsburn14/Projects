@@ -7,5 +7,5 @@ import java.util.Map;
 
 public interface InventoryDao {
 
-    Map<String, StoreItem> loadInventory() throws FileNotFoundException;
+    Map<String, StoreItem> loadInventory();
 }

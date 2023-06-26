@@ -1,11 +1,14 @@
 package com.techelevator.dao;
 
+import com.techelevator.temart.dao.InventoryDao;
+import com.techelevator.temart.dao.JdbcInventoryDao;
 import com.techelevator.temart.model.*;
 import org.junit.*;
 
 import java.util.List;
+import java.util.Map;
 
-public class JdbcInventoryDaoTests {
+public class JdbcInventoryDaoTests extends BaseDaoTests{
 
     private static final StoreItem CLOTHING_PRODUCT_1 = new Clothing("C01", "Test Clothing 1",
             "Test Clothing 1 Description", 24.98);
@@ -18,6 +21,20 @@ public class JdbcInventoryDaoTests {
     private static final StoreItem BOOK_PRODUCT_2 = new Book("B02", "Test Book 2",
             "Test Book 2 Description - nontaxable", 39.95);
 
+
+    private InventoryDao sut;
+
+    @Before
+    public void setup(){
+        sut = new JdbcInventoryDao(dataSource);
+    }
+
+    @Test
+    public void get_all_products(){
+        Map<String,StoreItem> inventory = sut.loadInventory();
+        Assert.assertEquals(5,inventory.size());
+        Assert.assertEquals(CLOTHING_PRODUCT_1, inventory.get(CLOTHING_PRODUCT_1.getSku()));
+    }
 
 
 

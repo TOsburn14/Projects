@@ -1,5 +1,6 @@
 package com.techelevator.temart.dao;
 
+import com.techelevator.temart.exception.DaoException;
 import com.techelevator.temart.model.*;
 
 import java.io.File;
@@ -16,7 +17,7 @@ public class FileInventoryReader implements InventoryDao{
         this.filename = inventoryFilename;
     }
 
-    public Map<String, StoreItem> loadInventory() throws FileNotFoundException {
+    public Map<String, StoreItem> loadInventory() {
 
         Map<String, StoreItem> inventory = new LinkedHashMap<String, StoreItem>();
 
@@ -30,6 +31,8 @@ public class FileInventoryReader implements InventoryDao{
                 inventory.put(currentItem.getSku(), currentItem);
             }
 
+        } catch (FileNotFoundException e) {
+            throw new DaoException("Inventory file not found",e);
         }
 
         return inventory;
