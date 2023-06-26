@@ -9,6 +9,12 @@ public class ConsoleService {
 
     private final Scanner scanner = new Scanner(System.in);
 
+
+    public int getHotelId() {
+        System.out.println("Hotel Id >>>");
+        return scanner.nextInt();
+    }
+
     public int promptForMenuSelection() {
         int menuSelection;
         System.out.print("Please choose an option: ");
