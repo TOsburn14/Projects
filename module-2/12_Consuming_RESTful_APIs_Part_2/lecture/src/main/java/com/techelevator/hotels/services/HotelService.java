@@ -18,6 +18,9 @@ public class HotelService {
      */
     public Hotel[] listHotels() {
         Hotel[] hotels = null;
+
+        hotels = restTemplate.getForObject(API_BASE_URL + "hotels", Hotel[].class);
+
         return hotels;
     }
 
