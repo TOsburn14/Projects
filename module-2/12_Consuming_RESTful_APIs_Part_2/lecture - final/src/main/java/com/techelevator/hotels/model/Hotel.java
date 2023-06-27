@@ -7,6 +7,7 @@ public class Hotel {
     private int stars;
     private int roomsAvailable;
     private String coverImage;
+    private Address address;
 
     @Override
     public String toString() {
@@ -58,5 +59,13 @@ public class Hotel {
 
     public void setCoverImage(String coverImage) {
         this.coverImage = coverImage;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 }
