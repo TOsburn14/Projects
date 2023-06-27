@@ -17,18 +17,50 @@ public class AuctionService {
 
 
     public Auction add(Auction newAuction) {
-        // place code here
-        return null;
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<Auction> httpEntity = new HttpEntity<Auction>(newAuction,headers);
+        Auction returnedAuction = null;
+        try {
+            returnedAuction = restTemplate.postForObject(API_BASE_URL, httpEntity,Auction.class);
+        } catch (ResourceAccessException e) {
+            BasicLogger.log("Unable to connect to server");
+        } catch (RestClientResponseException e) {
+            BasicLogger.log(e.getRawStatusCode() + " : " + e.getStatusText());
+        }
+        return returnedAuction;
     }
 
     public boolean update(Auction updatedAuction) {
-        // place code here
-        return false;
+        boolean wasSuccessful = false;
+        String url = API_BASE_URL + updatedAuction.getId();
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<Auction> httpEntity = new HttpEntity<Auction>(updatedAuction,headers);
+        try {
+            restTemplate.put(url,httpEntity);
+            wasSuccessful = true;
+        } catch (ResourceAccessException e) {
+            BasicLogger.log("Unable to connect to server");
+        } catch (RestClientResponseException e) {
+            BasicLogger.log(e.getRawStatusCode() + " : " + e.getStatusText());
+        }
+        return wasSuccessful;
     }
 
     public boolean delete(int auctionId) {
-        // place code here
-        return false;
+        boolean wasSuccessful = false;
+
+        try {
+            restTemplate.delete(API_BASE_URL + auctionId);
+            wasSuccessful = true;
+        } catch (ResourceAccessException e) {
+            BasicLogger.log("Unable to connect to server");
+        } catch (RestClientResponseException e) {
+            BasicLogger.log(e.getRawStatusCode() + " : " + e.getStatusText());
+        }
+        return wasSuccessful;
     }
 
     public Auction[] getAllAuctions() {
