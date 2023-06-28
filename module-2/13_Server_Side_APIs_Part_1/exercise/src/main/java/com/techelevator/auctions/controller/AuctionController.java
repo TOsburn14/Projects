@@ -36,7 +36,7 @@ public class AuctionController {
     }
 
     @RequestMapping(path = "/{id}",method = RequestMethod.GET)
-    public Auction getAuctionById(@PathVariable int id) {
+    public Auction get(@PathVariable int id) {
         return dao.get(id);
     }
 
