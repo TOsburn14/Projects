@@ -25,8 +25,19 @@ public class HotelService {
     public Reservation addReservation(Reservation newReservation) {
         Reservation returnedReservation = null;
 
-        //TODO: Add implementation
-        BasicLogger.log("HotelService.addReservation() has not been implemented");
+        // 1. Create the Headers and set the token and the content type
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType( MediaType.APPLICATION_JSON );
+        headers.setBearerAuth( authToken );
+        // 2. Create the Request Entity with the headers and the object for the request body
+        HttpEntity<Reservation> httpEntity = new HttpEntity<Reservation>(newReservation, headers);
+
+        //3. Call the API with exchange( url, method, httpEntity, response data type)
+        ResponseEntity<Reservation> responseEntity = restTemplate.exchange(API_BASE_URL + "reservations", HttpMethod.POST, httpEntity, Reservation.class);
+
+        //4. Retrieve the deserialized object from the response entity message body
+        returnedReservation = responseEntity.getBody();
+
 
         return returnedReservation;
     }
@@ -82,9 +93,21 @@ public class HotelService {
     public Reservation[] listReservations() {
         Reservation[] reservations = null;
         try {
-            ResponseEntity<Reservation[]> response = restTemplate.exchange(API_BASE_URL + "reservations",
-                    HttpMethod.GET, makeAuthEntity(), Reservation[].class);
+
+            // 1. Create the Headers with the token
+            HttpHeaders headers = new HttpHeaders();
+            headers.setBearerAuth( authToken );
+            // 2. Create the Request Entity with the token and a void message body type
+            HttpEntity<Void> requestEntity = new HttpEntity<Void>( headers );
+
+            // 3. Call exchange ( url, method, requestEntity, return data type)
+            ResponseEntity<Reservation[]> response = restTemplate.exchange( API_BASE_URL + "reservations",
+                    HttpMethod.GET, requestEntity, Reservation[].class);
+
+            // 4. use getBody() on the responseEntity to get the deserialized object
             reservations = response.getBody();
+
+
         } catch (RestClientResponseException | ResourceAccessException e) {
             BasicLogger.log(e.getMessage());
         }
