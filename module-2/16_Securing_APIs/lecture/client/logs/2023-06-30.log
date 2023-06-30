@@ -1,0 +1,4 @@
+2023-06-30T12:09:18.7979345 403 : [{"timestamp":"2023-06-30T16:09:18.776+00:00","status":403,"error":"Forbidden","message":"Access is denied","path":"/reservations/1"}]
+2023-06-30T12:10:15.0047935 HotelService.addReservation() has not been implemented
+2023-06-30T12:11:20.4754046 HotelService.addReservation() has not been implemented
+2023-06-30T12:24:56.3189602 HotelService.addReservation() has not been implemented
