@@ -1,8 +1,10 @@
 package com.techelevator.bartertown;
 
+import com.techelevator.bartertown.model.Account;
 import com.techelevator.bartertown.model.AuthenticatedUser;
 import com.techelevator.bartertown.model.UserCredentials;
 import com.techelevator.bartertown.services.AuthenticationService;
+import com.techelevator.bartertown.services.BartertownService;
 import com.techelevator.bartertown.services.ConsoleService;
 
 public class App {
@@ -17,9 +19,8 @@ public class App {
 
     private final ConsoleService consoleService = new ConsoleService();
     private final AuthenticationService authenticationService = new AuthenticationService(API_BASE_URL);
-
     private AuthenticatedUser currentUser;
-
+    BartertownService bartertownService;
     public static void main(String[] args) {
         App app = new App();
         app.run();
@@ -29,6 +30,7 @@ public class App {
         consoleService.printGreeting();
         loginMenu();
         if (currentUser != null) {
+            bartertownService = new BartertownService(API_BASE_URL,currentUser);
             mainMenu();
         }
     }
@@ -90,7 +92,8 @@ public class App {
 
         int credits = 0;
 
-        // TODO: 1. Get the credits for the user
+        Account account = bartertownService.getAccountForUser();
+        credits = account.getBarterCredit();
 
         consoleService.printMainMenu(credits);
     }
