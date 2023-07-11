@@ -10,8 +10,23 @@
  */
 function variables() {
   // Declares a variable where the value cannot be changed
+  const daysPerWeek = 7;
+  console.log(`There are ${daysPerWeek} days in the week.`);
   // Declares a variable those value can be changed
+  let daysPerMonth = 30;
+  console.log(`There are ${daysPerMonth} days in the month.`);
   // Declares a variable that will always be an array
+  const weekdays = [
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
+    'Sunday'
+  ];
+  console.log(weekdays);
+  console.table(weekdays);
 }
 
 /**
@@ -70,14 +85,37 @@ function objects() {
       "Milton Waddams",
       "Samir Nagheenanajar",
       "Michael Bolton"
-    ]
+    ],
+    toString: function() {
+      return `${this.lastName}, ${this.firstName} (${this.age})`;
+    }
   };
 
   // Log the object
-
+  console.log(person);
+  console.table(person);
   // Log the first and last name
+  console.log( `${person.firstName} ${person.lastName}`);
+  console.log(person['lastName']);
+
+  let propertyToPrint = 'employees';
+  console.log(person[propertyToPrint]);
+
+  // If we want to add a new property, just use it and
+  // it will be added
+  person.frstName = 'William';
+  console.log(person);
 
   // Log each employee
+  for (let i = 0; i < person.employees.length; i++) {
+    console.log(`Employee ${i + 1} is ${person.employees[i]}`)
+  }
+
+  console.log(person.toString());
+  // When calling a function, if the () are omitted it prints
+  // the code of the function
+  console.log(person.toString);
+
 }
 
 /*
