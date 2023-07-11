@@ -29,7 +29,7 @@ public class Exercise05_Weather {
         for (int i = 0; i < dailyHighs.length; i++)
             if (dailyHighs[i] <= FREEZING_TEMPERATURE) {
                 counter++;
-            } 
+            }
         return counter;
     }
 

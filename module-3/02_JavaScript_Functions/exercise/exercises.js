@@ -28,6 +28,9 @@
  * @returns {number[]} the filtered array
  */
 let unfilteredArray = [1, 2, 3, 4, 5, 6];
+function useParameterToFilterArray(filterFunc){
+    //return new array that is unfiltered filter() using filterFunc
+}
 
 /**
  * Write a function called makeNumber that takes two strings
