@@ -8,6 +8,7 @@ function returnOne() {
   return 1;
 }
 
+console.log("This is not in a function so it executes immediately");
 /**
  * Functions can also take parameters. These are just variables that are filled
  * in by whoever is calling the function.
@@ -27,6 +28,10 @@ function printToConsole(value) {
  * @param {number} firstParameter the first parameter to multiply
  * @param {number} secondParameter the second parameter to multiply
  */
+function multiplyTogether(firstParameter, secondParameter) {
+  return firstParameter * secondParameter;
+}
+
 
 /**
  * This version makes sure that no parameters are ever missing. If
@@ -38,6 +43,40 @@ function printToConsole(value) {
  * @param {number} [firstParameter=0] the first parameter to multiply
  * @param {number} [secondParameter=0] the second parameter to multiply
  */
+function multiplyNoUndefined(firstParameter = 0, secondParameter = 0) {
+  return firstParameter * secondParameter;
+}
+
+
+function dealingWithUnknownParams(){
+    // The arguments global variable is always populated with
+    // all of the arguments being passed to a function
+    console.log(arguments);
+    // To convert it to an Array the Array object can be used
+    const argumentsAsAnArray = Array.from(arguments);
+    console.table(argumentsAsAnArray);
+ }
+
+/*
+ The rest operator ( ...variable ) allows a function to be declared to
+ accept any number of arguments
+*/
+ function usingTheRestOperator( ...args ) {
+  console.table( args );
+ }
+
+function printThreeParameters(one, two, three) {
+  console.log(`${one} - ${two} - ${three}`);
+}
+
+const ourArray = [1, 'two', 3];
+
+/*
+  The spread operator someFunction(...parameter) breaks an array, String,
+  object into parts and sends each part as an individual parameter
+*/
+printThreeParameters(...ourArray);
+printThreeParameters(..."This Is a String");
 
 
  
@@ -87,10 +126,24 @@ function scopeTest() {
   }
 }
 
+/**
+ * JSDoc Example
+ * 
+ * Take the details of a person and create an English readable sentence
+ * that uses that information to describe them.  The quirks will be joined
+ * together with the separator, or with ', ' by default.
+ * 
+ * @param {string} name the name of the person being described 
+ * @param {number} age the age of the person being described 
+ * @param {string[]} listOfQuirks a list of funny quirks about the person
+ * @param {string} [separator=','] the string to delimit the quirks
+ * @returns {string} the full descriptive string
+ */
 function createSentenceFromUser(name, age, listOfQuirks = [], separator = ', ') {
   let description = `${name} is currently ${age} years old. Their quirks are: `;
   return description + listOfQuirks.join(separator);
 }
+
 
 /**
  * Takes an array and, using the power of anonymous functions, generates
