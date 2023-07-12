@@ -1,0 +1,21 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: cornflowerblue;
+}
+
+h1{
+    font-size: 48px;
+    color: gold;
+}
+
+h2 {
+    font-size: 36px;
+    color: purple;
+}
+h3{
+    font-size: 28px;
+}
+
+img{
+    width: 200px;
+}
