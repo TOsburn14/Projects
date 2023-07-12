@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Make a Reservation</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Belanosima&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>Bits & Bytes</h1>
+        <p>Welcome to the internet's best restaurant</p>
+    </header>
+    <nav>
+        <a href="index.html">Back to Menu</a>
+    </nav>
+    <main>
+        <h2>Reservation Form</h2>
+        <form action="/api/reservations" method="POST">
+            <div>
+                <label for="reservationId">Name: </label>
+                <input type="text" name="reservationName" id="reservationId" placeholder="Type your Name">
+            </div>
+            <div>
+                <label for="numberGuestsEntry">Number of Guests:</label>
+                <input type="number" name="numberOfGuests" id="numberGuestsEntry">
+            </div>
+            <div>
+                <label for="dateEntry">Date:</label>
+                <input type="date" name="reservationDate" id="dateEntry">
+            </div>
+            <div>
+                <label for="timeEntry">Time: </label>
+                <input type="time" name="reservationTime" id="timeEntry">
+            </div>
+            <div>
+                <label for="specialOccassionEntry">Special Occassion</label>
+                <input type="checkbox" name="specialOccassion" id="specialOccassionEntry">
+            </div>
+            <div>
+                <label for="typeEntry">Type:</label>
+                <select name="ocasstionType" id="typeEntry" >
+                    <option value="">Select Occassion Type</option>
+                    <option value="A">Anniversary</option>
+                    <option value="B">Birthday</option>
+                    <option value="O">Other</option>
+                </select>
+            </div>
+            <div>
+                <input type="submit">
+            </div>
+        </form>
+    </main>
+</body>
+</html>
