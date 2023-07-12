@@ -139,11 +139,15 @@ function findLargest(searchArray){
     searchArray.forEach( (value) => {
         
     if (value > entryone){
-        entryone == value
+        entryone = value
     }    
     })
     return entryone;
 }
+/**
+ * @param {number[]|string[]} searchArray the array that is given for the search
+ * @returns {number|string} the number or string that is largest within the array
+ */
 
 /*
  * CHALLENGE
