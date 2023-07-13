@@ -1,0 +1,61 @@
+body{
+    font-family: Witcher;
+    background-color:rgb(1,1,1);
+}
+@font-face {
+    font-family: Witcher;
+    src: url(https://www.dafontfree.net/embed/bWFzb24tcmVndWxhciZkYXRhLzI2L20vMTMzOTA5L0NyZWVkLnR0Zg);
+}
+header{
+    text-align: center;
+}
+
+h1 {
+    font-size: 48px;
+    color:silver;
+    text-align: center;
+}
+
+#everything-section {
+    text-align: center;
+        font-size: 36px;
+    color:silver;
+}
+
+h2 {
+    text-align: center;
+    text-decoration: underline;
+}
+
+section#quotes-section {
+    text-align: center;
+    font-size: 36px;
+    color: silver;
+
+}
+table {
+    margin-left: auto;
+    margin-right: auto;
+}
+img {
+    width: 400px;
+    text-align: center;
+}
+label {
+    padding: 10px;
+}
+blockquote {
+    font-style: italic;
+
+}
+form {
+    background-color: rgb(1, 1, 1);
+text-align: center;
+font-size: 36px;   
+color: silver;
+
+}
+main {
+    text-align: center;
+}
+

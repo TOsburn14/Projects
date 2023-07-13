@@ -1,31 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Geralt Of Rivia</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://www.dafontfree.net">
+    <link href="https://www.dafontfree.net/embed/bWFzb24tcmVndWxhciZkYXRhLzI2L20vMTMzOTA5L0NyZWVkLnR0Zg" rel="stylesheet" type="text/css"/>
 </head>
 <body>
     <header>
-        <h1>House Of The White Wolf</h1>
-        <p>The Butcher of Blaviken, Geralt of Rivia</p>
+        <h1>Witcher Fan Form</h1>
+        <p>Geralt of Rivia</p>
     </header>
-    <main>
-        <h2>Who is Geralt?</h2>
-        <section>
-            <img src="img/geralt.png" alt="Geralt of Rivia">
-            <h3>Early Life</h3>
-            <p>
-                Geralt, is a Witcher from the School of the Wolf. Although it is unknown how he ended up at the location of the school in Kaer Morhen as a young child,
-                Geralt was subjected to the mutations forced upon children which created the breed known as witchers. 
-                Many children do not survive this change to their body and often die painful and long-lasting deaths. 
-                But Geralt, showed extraordinary resistances to the mutations and was immediately but under additional mutations that were very rare in the Witcher breed. 
-                Due to these mutations, Geralt was stronger, faster and had all around better reflexes than any other witcher before. But the consequences were that Geralt
-                retained his emotions while everyone else was stripped of them and his hair turned Ash White. Hence his nickname 'The White Wolf'.
-            </p>
+    <nav>
+        <a href="index.html">Back To Home</a>
+    </nav>
+ <main>
+    <h2>Fan Form</h2>
+    <img src="img/download (1).jpg" alt="Witcher Logo">
 
-        </section>
+
+    <form action="/api/forms" method="POST">
+        <div>
+            <label for="name">Name:</label>
+            <input type="text" name="name" id="name" required>
+        </div>
+        <div>
+            <label for="email">Email: </label>
+            <input type="email" name="email" id="email" required>
+        </div>
+        <div>
+            <label for="date-of-birth">Date of Birth: </label>
+            <input type="date" name="date-of-birth" id="date-of-birth">
+        </div>
+        <div>
+            <label for="favorite-color">Favorite Color: </label>
+            <input type="color" name="favorite-color" id="favorite-color">
+        </div>
+        <div>
+            <label for="lucky-number">Lucky Number</label>
+            <input type="number" name="lucky-number" id="lucky-number">
+        </div>
+        <div>
+            <label for="confirmation">Confirmation</label>
+            <input type="checkbox" name="confirmation" id="confirmation">
+        </div>
+        <div>
+            <input type="submit">
+        </div>
+    </form>
     </main>
 </body>
+
 </html>
