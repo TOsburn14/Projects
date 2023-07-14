@@ -2,24 +2,39 @@
     background-color: lightblue;
 }
 
-/* div {
+div {
     background-color: red;
-} */
-
-/* .descendentOne {
+}
+/* 
+.descendentOne {
     background-color: yellow;
-} */
+}
 
-/* #idExample {
+#idExample {
     background-color: gray;
-} */
+}
 
-/* .descendentOne {
+.descendentOne {
     background-color: orange;
 } */
 
+/* h1, div {
+    background-color: blueviolet;
+} */
 
+div {
+    background-color: darkblue;
+}
 
+div :nth-child(odd) {
+    background-color: coral;
+}
+
+div > p:hover {
+    background-color: darkblue;
+    font-size: 5rem;
+    cursor: pointer;
+}
 
 
 
