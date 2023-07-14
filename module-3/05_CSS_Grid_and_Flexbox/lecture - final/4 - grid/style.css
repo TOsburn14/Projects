@@ -1,4 +1,60 @@
 
+div.container {
+    display: grid;
+    grid-template-columns: 200px 4fr 1fr;
+    /* grid-template-rows: 500px 1fr 2fr; */
+    grid-template-areas: "header header header"
+                         "menu main sidebar"
+                         "footer footer footer";
+    gap: 10px;
+}
+
+header {
+    grid-area: header;
+}
+
+nav {
+    grid-area: menu;
+}
+
+main {
+    grid-area: main;
+}
+
+aside {
+    grid-area: sidebar;
+}
+
+footer {
+    grid-area: footer;
+}
+
+@media (max-width: 768px) {
+    div.container {
+        grid-template-columns: 200px 1fr;
+        grid-template-areas: "header header"
+                             "menu main"
+                             "sidebar sidebar"
+                             "footer footer";
+    }
+    img {
+        width: 25%;
+    }
+}
+
+@media (max-width: 320px) {
+    div.container {
+        grid-template-columns: 1fr;
+        grid-template-areas: "header"
+                             "menu"
+                             "main"
+                             "sidebar"
+                             "footer";
+    }
+    img {
+        display: none;
+    };
+}
 
 
 /***** enter grid CSS above this line *****/
