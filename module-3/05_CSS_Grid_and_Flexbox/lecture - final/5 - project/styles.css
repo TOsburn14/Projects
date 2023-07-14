@@ -55,3 +55,102 @@ main, section, footer {
     text-align: center;
     text-transform: uppercase;
 }
+
+body {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-areas: "header header nav-links nav-links"
+                         "main main main main"
+                         "race race store store"
+                         "footer footer footer footer";
+    gap: 6px;
+    margin: 8px 20px;
+}
+
+header {
+    grid-area: header;
+    display: flex;
+    justify-content: flex-start;
+}
+
+nav {
+    grid-area: nav-links; 
+}
+
+main#homepage {
+    grid-area: main;
+    display: flex;
+    align-items: center;
+}
+
+section#race {
+    grid-area: race;
+    display: grid;
+    grid-template-columns: 125px 1fr;
+    grid-template-areas: "image title"
+                         "image text";
+}
+
+section#race img {
+    grid-area: image;
+}
+
+section#race h2 {
+    grid-area: title;
+}
+
+section#race p {
+    grid-area: text;
+}
+
+section#store {
+    grid-area: store;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+footer {
+    grid-area: footer;
+}
+
+nav ul {
+    display: flex;
+    justify-content: space-between;
+}
+
+nav ul a {
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+main#homepage ul {
+    list-style-type: none;
+}
+
+main#homepage ul li {
+    margin-bottom: 10px;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+a:hover {
+    color: blue;
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    body {
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+            "header"
+            "nav-links"
+            "main"
+            "race"
+            "store"
+            "footer";
+    }
+}
