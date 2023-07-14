@@ -15,3 +15,55 @@ ul {
   margin: 0;
   padding: 0;
 }
+
+aside {
+  position: fixed;
+  border: 1px rgba(0, 173, 238, 0.4) solid;
+  width: 200px;
+}
+aside img {
+  height: 120px;
+  margin-left: 40px;
+  margin-right: 40px;
+}
+main{
+  padding-left: 220px;
+  padding-right: 20px;
+}
+
+li {
+text-align: center;
+text-transform: uppercase;
+border: 1px rgba(0, 173, 238, 0.4) solid;
+list-style-type: none;
+padding: 1px;
+}
+a {
+  font-weight: bold;
+  color:#00ADEE;
+  text-decoration: none;
+}
+li:first-child{
+  text-decoration: underline;
+}
+header img{
+  height: 100px;
+  padding: 10px;
+}
+#placeholder img{
+  width: 100%;
+  padding: 20px;
+}
+section div{
+  width: 33%;
+ display: inline-block;
+ border: 1px rgba(170, 239, 135, 0.8) solid;
+ padding: 1px;
+}
+h2{
+  color: #8CC36F;
+}
+i{
+  padding: 1px;
+}
+
