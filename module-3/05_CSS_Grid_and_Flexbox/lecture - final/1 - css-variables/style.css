@@ -1,22 +1,26 @@
+:root {
+    --main-content-color: purple;
+    --main-header-color: orange;
+}
 
 h1 {
-    color: blue;
+    color: var(--main-header-color);
 }
 
 section h2 {
     background-color: yellow;
-    color: green;
+    color: var(--main-content-color);
     width: 50vw;
 }
 
 section > p {
-    color: green;
+    color: var(--main-content-color);
     font-size: 1.5rem;
     width: 50vw;
 }
 
 section > div {
-    color: green;
+    color: var(--main-content-color);
     font-size: 1.75rem;
     border: 1px solid black;
     padding: 10px;
