@@ -50,3 +50,23 @@ header img {
 #student-picture img{
     border-radius: 50%;
 }
+
+main {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas:  "header header picture"
+                          "quote quote picture"
+                          "profile profile contact"
+                          "exp exp exp";
+    row-gap: 20px;
+    column-gap: 50px;
+}
+#experience-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "code code"
+                         "database database"
+                         "web design";
+    row-gap: 20px;
+    column-gap: 50px;
+}
