@@ -6,7 +6,11 @@ const directions = ['up','right','down', 'left'];
 let clock;
 
 // Creates the Grid -- this should only occur after the DOM loads
+document.addEventListener('DOMContentLoaded', () => {
 
+    createGrid();
+
+});
 
 
 /*
@@ -72,7 +76,7 @@ function resetGame() {
 function createGrid() {
 
     // Get a Reference to the game board 
-    const frame;
+    const frame = document.getElementById('frame');
 
     
     for (let i = 0; i < 10 ; i++) {
@@ -87,11 +91,12 @@ function createGrid() {
  */
 function buildRow(frame) {
     // Create a Div to be the row
-    const row;
+    const row = document.createElement('div');
     // Add the row class to the row div
-
+    row.classList.add('row');
     // Append the row div to the game board (frame)
-   
+    frame.appendChild(row);
+    
     for (let i = 0; i < 10 ; i++) {
         buildSquare(row, i); 
     }    
@@ -104,10 +109,11 @@ function buildRow(frame) {
  */
 function buildSquare(row, count) {
    // Create a Div for the game board square
-   const square;
+   const square = document.createElement('div');
    // Add the square class to the div
-   
+   square.classList.add('square');
    // Insert the square at the end of the row
+   row.insertAdjacentElement('beforeend', square);
   
 }
 
