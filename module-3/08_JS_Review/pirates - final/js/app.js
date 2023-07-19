@@ -26,6 +26,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    document.getElementById('resetButton').addEventListener('click', resetGame);
+
 });
 
 
@@ -70,8 +72,23 @@ function getElementAtSameIndex(currentLocation, newParent) {
 }
 
 function moveShip(currentLocation, newLocation) {
-    currentLocation.classList.remove('boat');
-    newLocation.classList.add('boat');
+    if (isWin(newLocation)) {
+        win();
+    } else if (isLoss(newLocation)) {
+        lose();
+    } else if (canMoveToLocation(newLocation)) {
+        currentLocation.classList.remove('boat');
+        newLocation.classList.add('boat');
+    }
+}
+
+function canMoveToLocation(newLocation) {
+    if (newLocation == null 
+        || newLocation.classList.contains('pirate') 
+        || newLocation.classList.contains('iceberg')) {
+        return false;
+    }
+    return true;
 }
 
 
@@ -81,30 +98,60 @@ function getShipLocation() {
 }
 
 
-
-
-
 /*
   Win Conditions
 */
+function isWin(nextLocation) {
 
+    if (nextLocation && nextLocation.classList.contains('treasure')) {
+        return true;
+    }
+    return false;
+}
 
-
+function win() {
+    const announce = document.querySelector('.announce');
+    announce.classList.add('winText');
+    announce.innerText = "You Win!";
+    getShipLocation().classList.remove('boat');
+}
 
 
 /*
     Loss Conditions
 */
 
+function isLoss(nextLocation) {
+    if (nextLocation && (nextLocation.classList.contains('pirate') || nextLocation.classList.contains('iceberg'))) {
+        return true;
+    }
+    return false;
+}
 
+function lose() {
+    const announce = document.querySelector('.announce');
+    announce.classList.add('winText');
+    announce.innerText = "You Sunk!";
 
+    const ship = getShipLocation();
+    ship.classList.remove('boat');
+    ship.classList.add('boat_explosion');
+    // setTimeout( callbackFunction, timeToWaitInMs )
+    setTimeout( () => {
+        ship.classList.remove('boat_explosion');
+        ship.classList.add('boat_sunk');
+    }, 250);
+}
 
 /**
  * Reset the Game
  */
 function resetGame() {
 
+    cleanupShip();
+
     document.querySelector('.announce').innerText = "Play!";
+    document.querySelector('.announce').classList.remove('winText');
 
     createObstacles();
 
@@ -114,6 +161,17 @@ function resetGame() {
     
 }
 
+
+function cleanupShip() {
+    const ship = getShipLocation();
+    if (ship != null) {
+        ship.classList.remove('boat');
+    }
+    const sunkShip = document.getElementById('frame').querySelector('.boat_sunk');
+    if (sunkShip != null) {
+        sunkShip.classList.remove('boat_sunk');
+    }
+}
 
 /*
     Setup the Game
