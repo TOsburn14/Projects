@@ -10,33 +10,74 @@ document.addEventListener('DOMContentLoaded', () => {
 
     createGrid();
 
+    document.querySelector('body').addEventListener('keyup', (event) => {
+
+        if (event.key.toLowerCase() === 'a') {
+            moveShipLeft();
+        }
+        if (event.key.toLowerCase() === 'd') {
+            moveShipRight();
+        }
+        if (event.key.toLowerCase() === 's') {
+            moveShipDown();
+        }
+        if (event.key.toLowerCase() === 'w') {
+            moveShipUp();
+        }
+    });
+
 });
+
 
 
 /*
   Move the Ship 
 */
 function moveShipRight() {
-
+    const currentShip = getShipLocation();
+    const newLocation = currentShip.nextElementSibling;
+    moveShip(currentShip, newLocation);
 }
 
 function moveShipLeft() {
-
+    const currentShip = getShipLocation();
+    const newLocation = currentShip.previousElementSibling;
+    moveShip(currentShip, newLocation);
 }
 
 function moveShipDown() {
-
+    const currentShip = getShipLocation();
+    const newLocation = getElementAtSameIndex(currentShip, currentShip.parentElement.nextElementSibling);
+    moveShip(currentShip, newLocation);
 }
 
 function moveShipUp() {
+    const currentShip = getShipLocation();
+    const newLocation = getElementAtSameIndex(currentShip, currentShip.parentElement.previousElementSibling);
+    moveShip(currentShip, newLocation);
 
 }
 
+function getElementAtSameIndex(currentLocation, newParent) {
+    let elementAtIndex = null;
+
+    if (newParent != null) {
+        const index = Array.from(currentLocation.parentNode.children).indexOf(currentLocation);
+        elementAtIndex = newParent.childNodes[index];
+    }
+
+    return elementAtIndex;
+}
+
+function moveShip(currentLocation, newLocation) {
+    currentLocation.classList.remove('boat');
+    newLocation.classList.add('boat');
+}
 
 
 function getShipLocation() {
     // Get the return the current location of the ship
- 
+    return document.getElementById('frame').querySelector('.boat');
 }
 
 
@@ -63,6 +104,13 @@ function getShipLocation() {
  */
 function resetGame() {
 
+    document.querySelector('.announce').innerText = "Play!";
+
+    createObstacles();
+
+    const frame = document.getElementById('frame');
+    frame.firstElementChild.firstElementChild.classList.add('boat');
+    frame.lastElementChild.lastElementChild.classList.add('treasure');
     
 }
 
@@ -117,7 +165,21 @@ function buildSquare(row, count) {
   
 }
 
+function createObstacles() {
 
+    const rows = document.getElementById('frame').children;
+    const rowsArray = Array.from(rows);
+
+    rowsArray.forEach( (row, rowIndex) => {
+        const cells = row.children;
+        Array.from(cells).forEach( (cell, cellIndex) => {
+            if ( !(rowIndex === 0 && cellIndex === 0) &&
+                !(rowIndex === rows.length - 1 && cellIndex === rows.length - 1) ) {
+                    addObstacles(cell);
+                }
+        });
+    });
+}
 
 
 /**
@@ -127,16 +189,18 @@ function buildSquare(row, count) {
  */
 function addObstacles(cell) {
     // remove any existing pirates or icebergs
-
+    cell.classList.remove('pirate');
+    cell.classList.remove('iceberg');
 
     const rand = getRandomNumber(100, false);
 
     if (rand > 85) {
         // Add iceberg here
+        cell.classList.add('iceberg');
  
     } else if (rand > 80) {
         // Add pirates here
-
+        cell.classList.add('pirate');
     } 
 }
 
