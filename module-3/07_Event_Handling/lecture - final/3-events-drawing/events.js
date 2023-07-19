@@ -67,6 +67,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
         location in the area.
     */
     canvas.addEventListener('mousemove', (event) => {
+        console.log("The mouse moved")
         showMouseCoordinates(event)
     });
 

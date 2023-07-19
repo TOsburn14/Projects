@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	colors.addEventListener("click", event => {
 		console.log(event.target.getAttribute('id'));
+		console.log("NodeName= " + event.target.nodeName)
 		if (event.target.nodeName.toLowerCase() === "li") {
 			event.target.style.backgroundColor = event.target.innerText;
 		}
