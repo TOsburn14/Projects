@@ -8,32 +8,32 @@
 
     <div class="well-display">
       <div class="well">
-        <span class="amount">{{ averageRating }}</span>
+        <span class="amount" v-on:click="filter=0">{{ averageRating }}</span>
         Average Rating
       </div>
 
       <div class="well">
-        <span class="amount">{{ numberOfOneStarReviews }}</span>
+        <span class="amount" v-on:click="filter = 1">{{ numberOfOneStarReviews }}</span>
         1 Star Review{{ numberOfOneStarReviews === 1 ? '' : 's' }}
       </div>
 
       <div class="well">
-        <span class="amount">{{ numberOfTwoStarReviews }}</span>
+        <span class="amount" v-on:click="filter = 2">{{ numberOfTwoStarReviews }}</span>
         2 Star Review{{ numberOfTwoStarReviews === 1 ? '' : 's' }}
       </div>
 
       <div class="well">
-        <span class="amount">{{ numberOfThreeStarReviews }}</span>
+        <span class="amount" v-on:click="filter = 3">{{ numberOfThreeStarReviews }}</span>
         3 Star Review{{ numberOfThreeStarReviews === 1 ? '' : 's' }}
       </div>
 
       <div class="well">
-        <span class="amount">{{ numberOfFourStarReviews }}</span>
+        <span class="amount" v-on:click="filter = 4">{{ numberOfFourStarReviews }}</span>
         4 Star Review{{ numberOfFourStarReviews === 1 ? '' : 's' }}
       </div>
 
       <div class="well">
-        <span class="amount">{{ numberOfFiveStarReviews }}</span>
+        <span class="amount" v-on:click="filter = 5">{{ numberOfFiveStarReviews }}</span>
         5 Star Review{{ numberOfFiveStarReviews === 1 ? '' : 's' }}
       </div>
     </div>
@@ -69,14 +69,18 @@
         <label for="review">Review:</label>
         <textarea id="review" v-model="newReview.review"></textarea>
       </div>
-      <input type="submit" value="Save">
+      <input type="submit" value="Save" v-bind:disabled="!isFormValid">
       <input v-on:click="resetForm()" type="button" value="Cancel" >
     </form>
+
+    <div v-if="filteredReviews.length === 0">
+      <p class="reviewsNotFound">No {{filter}} Star Reviews Found</p>
+    </div>
 
     <div
       class="review"
       v-bind:class="{ favorited: review.favorited }"
-      v-for="review in reviews"
+      v-for="review in filteredReviews"
       v-bind:key="review.id"
     >
       <h4>{{ review.reviewer }}</h4>
@@ -114,6 +118,7 @@ export default {
         "Host and plan the perfect cigar party for all of your squirrelly friends.",
       newReview: {},
       showForm: false,
+      filter: 0,
       reviews: [
         {
           reviewer: "Malcolm Gladwell",
@@ -151,6 +156,11 @@ export default {
     };
   },
   computed: {
+    filteredReviews() {
+      return this.reviews.filter( review => {
+        return this.filter === 0 ? true : this.filter === review.rating;
+      });
+    },
     averageRating() {
       let sum = this.reviews.reduce((currentSum, review) => {
         return currentSum + review.rating;
@@ -171,6 +181,11 @@ export default {
     },
     numberOfFiveStarReviews() {
       return this.numberOfReviews(5);
+    },
+    isFormValid() {
+      // return true if all of the values in newReview exist
+      return this.newReview.reviewer && this.newReview.title &&
+        this.newReview.rating && this.newReview.review;
     }
   },
   methods: {
@@ -272,6 +287,17 @@ form > input[type=button] {
 form > input[type=submit] {
   width: 100px;
   margin-right: 10px;
+}
+
+div.main div.well-display div.well span.amount:hover {
+  color: blue;
+  cursor: pointer;
+}
+
+p.reviewsNotFound {
+  margin-top: 25px;
+  font-size: 2rem;
+  font-weight:600;
 }
 </style>
 
