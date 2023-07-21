@@ -1,6 +1,8 @@
+<!-- Outside of the tags you can have HTML comments --> 
 <template>
   <div class="main">
-    <h2>Product Reviews for {{ name }}</h2>
+    <!-- The template uses HTML comments -->
+    <h2>Product Reviews for {{ productName }}</h2>
 
     <p class="description">{{ description }}</p>
 
@@ -39,21 +41,23 @@
     <a
       id="show-form-button"
       href="#"
+      v-on:click="showForm = true"
+      v-if="!showForm"
       >Show Form</a
     >
 
-    <form >
+    <form v-on:submit.prevent="addNewReview()" v-show="showForm">
       <div class="form-element">
         <label for="reviewer">Name:</label>
-        <input id="reviewer" type="text" />
+        <input id="reviewer" type="text" v-model.trim="newReview.reviewer" />
       </div>
       <div class="form-element">
         <label for="title">Title:</label>
-        <input id="title" type="text"  />
+        <input id="title" type="text" v-model.trim="newReview.title"  />
       </div>
       <div class="form-element">
         <label for="rating">Rating:</label>
-        <select id="rating">
+        <select id="rating" v-model.number="newReview.rating">
           <option value="1">1 Star</option>
           <option value="2">2 Stars</option>
           <option value="3">3 Stars</option>
@@ -63,10 +67,10 @@
       </div>
       <div class="form-element">
         <label for="review">Review:</label>
-        <textarea id="review" ></textarea>
+        <textarea id="review" v-model="newReview.review"></textarea>
       </div>
       <input type="submit" value="Save">
-      <input type="button" value="Cancel" >
+      <input v-on:click="resetForm()" type="button" value="Cancel" >
     </form>
 
     <div
@@ -98,13 +102,18 @@
 </template>
 
 <script>
+
+// The script uses JavaScript comments 
+
 export default {
   name: "product-review",
   data() {
     return {
-      name: "Cigar Parties for Dummies",
+      productName: "Cigar Parties for Dummies",
       description:
         "Host and plan the perfect cigar party for all of your squirrelly friends.",
+      newReview: {},
+      showForm: false,
       reviews: [
         {
           reviewer: "Malcolm Gladwell",
@@ -149,35 +158,42 @@ export default {
       return (sum / this.reviews.length).toFixed(2);
     },
     numberOfOneStarReviews() {
-      return this.reviews.reduce((currentCount, review) => {
-        return currentCount + (review.rating === 1);
-      }, 0);
+      return this.numberOfReviews(1);
     },
     numberOfTwoStarReviews() {
-      return this.reviews.reduce((currentCount, review) => {
-        return currentCount + (review.rating === 2);
-      }, 0);
+      return this.numberOfReviews(2);
     },
     numberOfThreeStarReviews() {
-      return this.reviews.reduce((currentCount, review) => {
-        return currentCount + (review.rating === 3);
-      }, 0);
+      return this.numberOfReviews(3);
     },
     numberOfFourStarReviews() {
-      return this.reviews.reduce((currentCount, review) => {
-        return currentCount + (review.rating === 4);
-      }, 0);
+      return this.numberOfReviews(4);
     },
     numberOfFiveStarReviews() {
+      return this.numberOfReviews(5);
+    }
+  },
+  methods: {
+    numberOfReviews(numOfStars) {
       return this.reviews.reduce((currentCount, review) => {
-        return currentCount + (review.rating === 5);
-      }, 0);
+        return currentCount + (review.rating === numOfStars);
+      }, 0);    
+    },
+    addNewReview() {
+      this.reviews.unshift(this.newReview);
+      this.resetForm();
+    },
+    resetForm() {
+      this.newReview = {};
+      this.showForm = false;
     }
   }
 };
 </script>
 
 <style scoped>
+/* The Style uses CSS comments */
+
 div.main {
   margin: 1rem 0;
 }
