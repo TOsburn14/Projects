@@ -1,8 +1,18 @@
 <template>
   <div id="products">
       <h1>Products</h1>
+      <p>Items in Cart: {{ this.shoppingCart.length }}</p>
+      <div class="filter">
+        <select v-model="categoryFilter">
+          <option value="All">All</option>
+          <option value="Home">Home</option>
+          <option value="Apparel">Apparel</option>
+          <option value="Garden">Garden</option>
+          <option value="Jewelry">Jewelry</option>
+        </select>
+      </div>
       <div class="productList">
-        <div class="product" v-for="product in products" v-bind:key="product.id"
+        <div class="product" v-for="product in filteredProducts" v-bind:key="product.id"
           v-bind:class="{ bestseller : product.is_top_seller }">
           <h2>{{product.name}}</h2>
           <img v-bind:src="require('../assets/product-images/' + product.image_name)" alt="">
@@ -13,10 +23,14 @@
               v-for="n in numberOfEmptyStars(product.rating)" v-bind:key="'empty-' + n">
           </div>
           <p>{{ '$' + Number(product.price).toFixed(2) }}</p>
+
           <div class="notices">
             <span v-if="product.is_top_seller" class="topseller">Top Seller</span>
             <span v-if="product.quantity === 0" class="limitedstock">Sold Out</span>
             <span v-if="product.quantity > 0 && product.quantity <= 3" class="limitedstock">Only {{ product.quantity }} Left</span>
+          </div>
+          <div class="addToCart">
+            <a href="#" v-on:click.prevent="addProductToCart(product.id)">Add to Cart</a>
           </div>
         </div>
       </div>
@@ -28,7 +42,22 @@ export default {
     name: 'product-list',
     data() {
       return {
-        products: []
+        products: [],
+        categoryFilter: 'All',
+        shoppingCart: []
+      }
+    },
+    computed: {
+      filteredProducts() {
+        return this.products.filter( product => {
+          if (this.categoryFilter === 'All') {
+            return true;
+          }
+          if (this.categoryFilter === product.category) {
+            return true;
+          }
+          return false;
+        });
       }
     },
     methods: {
@@ -37,6 +66,10 @@ export default {
       },
       numberOfEmptyStars(rating) {
         return 5 - this.numberOfStars(rating);
+      },
+      addProductToCart(productId) {
+        const product = this.products.find( p => p.id == productId);
+        this.shoppingCart.push(product);
       }
     },
     created() {
@@ -48,6 +81,22 @@ export default {
 </script>
 
 <style>
+div.productList div.addToCart {
+  margin-bottom: 10px;
+}
+
+div.productList div.addToCart a {
+  text-decoration: none;
+  color: black;
+  font-size: .9rem;
+  font-weight: 700;
+}
+
+div.productList div.addToCart a:hover {
+  text-decoration: underline;
+  color: blue;
+}
+
 div.productList {
   display: flex;
   flex-wrap: wrap;
