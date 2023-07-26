@@ -5,8 +5,8 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint",
     "test:e2e": "vue-cli-service test:e2e",
+    "lint": "vue-cli-service lint",
     "test:e2e-headless": "vue-cli-service test:e2e --headless"
   },
   "dependencies": {
@@ -19,6 +19,7 @@
     "@vue/cli-plugin-babel": "^5.0.8",
     "@vue/cli-plugin-e2e-cypress": "^5.0.8",
     "@vue/cli-plugin-eslint": "^5.0.8",
+    "@vue/cli-plugin-vuex": "~5.0.0",
     "@vue/cli-service": "^5.0.8",
     "@vue/test-utils": "1.1.3",
     "cypress": "8.2.0",
