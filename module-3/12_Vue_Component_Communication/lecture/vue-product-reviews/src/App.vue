@@ -1,26 +1,45 @@
 <template>
   <!-- add main class to div#app -->
-  <div id="app">
-    <product-reviews></product-reviews>
+  <div id="app" class="main">
 
     <!-- Title and Description -->
+    <h2>Product Reviews for {{ $store.state.name }}</h2>
+    <p class="description">{{ $store.state.description }}</p>
+
     <!-- div.well-display -->
+    <div class="well-display">
       <!-- Average Summary -->
+      <AverageSummary />
       <!-- Star Summaries -->
+      <StarSummary rating="1" />
+      <StarSummary rating="2" />
+      <StarSummary rating="3" />
+      <StarSummary rating="4" />
+      <StarSummary rating="5" />
+    </div>
     <!-- Add Review -->
+    <AddReviewVue />
     <!-- Review List -->
+    <ReviewListVue />
   </div>
 </template>
 
 <script>
-import ProductReviews from './components/ProductReviews.vue'
+import AverageSummary from "@/components/AverageSummary";
+import StarSummary from "@/components/StarSummary";
+import ReviewListVue from './components/ReviewList.vue';
+import AddReviewVue from './components/AddReview.vue';
+
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    ProductReviews
-  }
-}
+    AverageSummary,
+    StarSummary,
+    ReviewListVue,
+    AddReviewVue
+  },
+};
 </script>
 
 <style>
@@ -34,30 +53,30 @@ export default {
   margin: 60px auto 0 auto;
 }
 div.main {
-    margin: 1rem 0;
+  margin: 1rem 0;
 }
 div.main div.well-display {
-    display: flex;
-    justify-content: space-around;
+  display: flex;
+  justify-content: space-around;
 }
 
 div.main div.well-display div.well {
-    display: inline-block;
-    width: 15%;
-    border: 1px black solid;
-    border-radius: 6px;
-    text-align: center;
-    margin: 0.25rem;
+  display: inline-block;
+  width: 15%;
+  border: 1px black solid;
+  border-radius: 6px;
+  text-align: center;
+  margin: 0.25rem;
 }
 
 div.main div.well-display div.well span.amount {
-    color: darkslategray;
-    display: block;
-    font-size: 2.5rem;
+  color: darkslategray;
+  display: block;
+  font-size: 2.5rem;
 }
 
 div.main div.well-display div.well span.amount:hover {
-    color: blue;
-    cursor: pointer;
+  color: blue;
+  cursor: pointer;
 }
 </style>
