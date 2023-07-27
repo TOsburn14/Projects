@@ -22,6 +22,7 @@ export default {
     },
     methods: {
         saveBook() {
+            const bookID = this.$route.params.id
             this.$store.commit('SAVE_BOOK', this.book);
             this.book = {
                 title: '',
@@ -29,6 +30,7 @@ export default {
                 read: false,
                 isbn: ''
             };
+            this.$router.push( {name: 'my-books',params: {id: bookID} } )
         }
     }
 }
