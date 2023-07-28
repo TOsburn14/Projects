@@ -51,6 +51,14 @@ export default {
       this.newReview.productID = productID;
       this.$store.commit("ADD_REVIEW", this.newReview);
       // TODO: send the visitor back to the product page to see the new review
+      // $router accesses the router library.  push() takes a router object and
+      // redirects the user back to that page.
+      this.$router.push( {
+        name: 'product-detail',
+        params: {
+          id: productID
+        }
+      });
     },
     resetForm() {
       this.newReview = {};
