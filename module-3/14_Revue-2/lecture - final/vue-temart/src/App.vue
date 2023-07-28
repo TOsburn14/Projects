@@ -1,22 +1,25 @@
 <template>
   <div id="app">
     <PageHeader />
-    <ProductList />
+    <main>
+      <router-view />
+    </main>
     <PageFooter />
   </div>
 </template>
 
 <script>
 import PageHeader from '@/components/PageHeader'
-import ProductList from '@/components/ProductList'
 import PageFooter from '@/components/PageFooter'
 
 export default {
   name: 'App',
   components: {
     PageHeader,
-    ProductList,
     PageFooter
+  },
+  created() {
+    this.$store.dispatch('loadProducts');
   }
 }
 </script>
@@ -41,7 +44,7 @@ export default {
 header {
   grid-area: header;
 }
-div#products {
+main {
   grid-area: main;
 }
 footer {
