@@ -1,8 +1,6 @@
 <template>
   <div id="products">
       <h1>Products</h1>
-      <p>Items in Cart: {{ this.shoppingCart.length }}</p>
-
       <div class="productList">
         <ProductDetail v-for="currentProduct in filteredProducts" 
           v-bind:key="currentProduct.id"
@@ -22,7 +20,7 @@ export default {
     data() {
       return {
         
-        shoppingCart: []
+        
       }
     },
     computed: {

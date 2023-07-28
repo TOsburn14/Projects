@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import ProductsView from '@/views/ProductsView.vue'
+import SingleProductView from '@/views/SingleProductView.vue'
 
 Vue.use(VueRouter)
 
@@ -10,6 +11,11 @@ const routes = [
     name: 'products',
     component: ProductsView
   },
+  {
+    path: '/products/:productId',
+    name: 'single-product-view',
+    component: SingleProductView
+  }
 
 ]
 

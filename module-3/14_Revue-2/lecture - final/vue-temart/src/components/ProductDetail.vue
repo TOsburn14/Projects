@@ -1,7 +1,14 @@
 <template>
     <div class="product" v-bind:class="{ bestseller : product.is_top_seller }">
         <h2>{{product.name}}</h2>
-        <img v-bind:src="require('../assets/product-images/' + product.image_name)" alt="">
+        <router-link :to="{
+            name: 'single-product-view',
+            params: {
+                productId: product.id
+            }
+        }">
+            <img v-bind:src="require('../assets/product-images/' + product.image_name)" alt="">
+        </router-link>
         <div class="rating">
         <img src="../assets/star.png" class="ratingStar"
             v-for="n in numberOfStars" v-bind:key="n">
@@ -36,8 +43,7 @@ export default {
     methods: {
 
       addProductToCart(productId) {
-        const product = this.products.find( p => p.id == productId);
-        this.shoppingCart.push(product);
+        this.$store.commit('ADD_PRODUCT_TO_SHOPPING_CART', productId);
       }
     }
 }
