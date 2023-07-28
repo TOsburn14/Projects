@@ -1,16 +1,20 @@
 <template>
   <header>
-      <img src="../assets/temart-logo.png" alt="">
-      <div>
-          Menu
-      </div>
+    <img src="../assets/temart-logo.png" alt="" />
+    <div>
+      <ShoppingCartCountVue />
+    </div>
   </header>
 </template>
 
 <script>
+import ShoppingCartCountVue from "./ShoppingCartCount.vue";
 export default {
-    name: 'page-header'
-}
+  name: "page-header",
+  components: {
+    ShoppingCartCountVue,
+  },
+};
 </script>
 
 <style>
