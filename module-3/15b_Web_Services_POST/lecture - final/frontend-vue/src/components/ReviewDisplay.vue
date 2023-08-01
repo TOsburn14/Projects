@@ -20,16 +20,27 @@
         v-on:change="onFavoritedChange(review)"
       />
     </p>
+    <div>
+      <router-link tag="button" :to="{ 
+        name: 'confirm-delete', 
+        params: { reviewId: review.id } }">
+        Delete Review
+      </router-link>
+    </div>
   </div>
 </template>
 
 <script>
+import ProductService from '../services/ProductService';
+
 export default {
   name: "review-display",
   props: ["review"],
   methods: {
     onFavoritedChange(review) {
-      this.$store.commit("FLIP_FAVORITED", review);
+      review.favorited = !review.favorited;
+      ProductService.updateReview(review)
+        .catch( err => console.error(err) );
     }
   }
 };

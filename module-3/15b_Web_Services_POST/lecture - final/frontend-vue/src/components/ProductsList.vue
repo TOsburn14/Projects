@@ -8,7 +8,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr v-for="product in $store.state.products" v-bind:key="product.id">
+      <tr v-for="product in products" v-bind:key="product.id">
         <td>{{ product.id }}</td>
         <td>
           <router-link v-bind:to="{ 
@@ -27,8 +27,20 @@
 </template>
 
 <script>
+import ProductService from '../services/ProductService'
+
 export default {
-  name: "products-list"
+  name: "products-list",
+  data() {
+    return {
+      products: []
+    }
+  },
+  created() {
+    ProductService.getAllProducts().then( response => {
+      this.products = response.data;
+    })
+  }
 };
 </script>
 
