@@ -1,15 +1,22 @@
 <template>
   <header>
-      <img src="../assets/temart-logo.png" alt="">
+      <router-link :to="{ name: 'products' }">
+        <img src="../assets/temart-logo.png" alt="">
+      </router-link>
+      
       <div>
-          Menu
+          <ShoppingCartCount />
       </div>
   </header>
 </template>
 
 <script>
+import ShoppingCartCount from '@/components/ShoppingCartCount.vue'
 export default {
-    name: 'page-header'
+    name: 'page-header',
+    components: {
+      ShoppingCartCount
+    }
 }
 </script>
 
