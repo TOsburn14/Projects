@@ -30,6 +30,7 @@
 </template>
 
 <script>
+import ProductService from "../Services/ProductService";
 export default {
   name: "add-review",
   data() {
@@ -41,25 +42,31 @@ export default {
         title: "",
         rating: 0,
         review: "",
-        favorited: false
-      }
+        favorited: false,
+      },
     };
   },
   methods: {
     addNewReview() {
       const productID = this.$route.params.id;
       this.newReview.productID = productID;
-      this.$store.commit("ADD_REVIEW", this.newReview);
+
+      ProductService.addReview(this.newReview, productID)
+        .then((response) => {
+          if (response.status === 201) {
+            this.$router.push({
+              name: "product-detail",
+              params: { id: productID },
+            });
+          }
+        })
+        .catch( err => console.log(err) );
       // TODO: send the visitor back to the product page to see the new review
-      this.$router.push( { 
-        name: 'product-detail', 
-        params: { id: productID }
-      });
     },
     resetForm() {
       this.newReview = {};
-    }
-  }
+    },
+  },
 };
 </script>
 

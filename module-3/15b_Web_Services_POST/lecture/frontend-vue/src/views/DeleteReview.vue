@@ -21,7 +21,7 @@
 </template>
 
 <script>
-// import ProductsService from '../services/ProductsService'
+import ProductService from '../Services/ProductService'
 
 export default {
     data() {
@@ -32,7 +32,13 @@ export default {
     },
     methods: {
         deleteConfirmed() {
-
+            ProductService.deleteReview(this.review.id)
+                .then( response => {
+                    if (response.status === 204){
+                        this.returnToProductPage();
+                    }
+                })
+                .catch(err => console.error(err));
         },
         returnToProductPage() {
             this.$router.push({ name: 'product-detail',
@@ -43,11 +49,11 @@ export default {
         
     },
     created() {
-        // const reviewId = Number(this.$route.params.reviewId);
-        // ProductsService.getReviewById(reviewId).then( response => {
-        //     this.review = response.data;
-        //     this.isLoading = false;
-        // }).catch(err => console.error(err))
+        const reviewId = Number(this.$route.params.reviewId);
+        ProductService.getReviewById(reviewId).then( response => {
+            this.review = response.data;
+            this.isLoading = false;
+        }).catch(err => console.error(err))
     }
 }
 </script>
