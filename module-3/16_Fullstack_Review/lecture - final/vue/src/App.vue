@@ -17,9 +17,6 @@ export default {
   components: {
     PageHeader,
     PageFooter
-  },
-  created() {
-    this.$store.dispatch('loadProducts');
   }
 }
 </script>

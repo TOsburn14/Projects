@@ -1,5 +1,9 @@
 <template>
-    <div class="singleProduct">
+<div>
+    <div v-if="!product">
+        <img src="../assets/loading_icon.gif" alt="">
+    </div>
+    <div class="singleProduct" v-if="product">
         <ProductDetail :product="product" />
         <p>Item Id: {{product.id}}</p>
         <p>Find it in {{ product.category }}</p>
@@ -7,11 +11,12 @@
             <router-link :to="{ name:'products' }">Back to Product Listing</router-link>
         </div>
     </div>
-  
+  </div>
 </template>
 
 <script>
 import ProductDetail from '@/components/ProductDetail.vue'
+import productService from '@/services/ProductService.js'
 
 export default {
     components: {
@@ -25,7 +30,9 @@ export default {
     },
     created() {
         this.productId = this.$route.params.productId;
-        this.product = this.$store.getters.getProductById(this.productId);
+        productService.getProductById(this.productId).then( response => {
+            this.product = response.data;
+        }).catch( err => console.error(err) );
     }
 }
 </script>
