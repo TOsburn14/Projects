@@ -5,7 +5,8 @@
       </router-link>
     <div id="nav">
       <router-link v-bind:to="{ name: 'home' }">Home</router-link>&nbsp;|&nbsp;
-      <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
+      <router-link v-bind:to="{ name: 'products' }" v-if="$store.getters.isLoggedIn">Products</router-link>&nbsp;|&nbsp;
+      <router-link v-bind:to="{ name: 'logout' }" v-if="$store.getters.isLoggedIn">Logout</router-link>
     </div>
       <div>
           <ShoppingCartCount />

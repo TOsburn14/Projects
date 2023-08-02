@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
+import ProductService from '../services/ProductService.js'
 
 Vue.use(Vuex)
 
@@ -20,20 +21,16 @@ export default new Vuex.Store({
   state: {
     token: currentToken || '',
     user: currentUser || {},
-    products: [],
     categoryFilter: 'All',
     categories: [],
     shoppingCart: []
   },
   getters: {
-    products(state) {
-      return state.products;
-    },
     categories(state) {
       return state.categories;
     },
-    getProductById: (state) => (productId) => {
-      return state.products.find( p => p.id == productId);
+    isLoggedIn(state) {
+      return state.token;
     }
   },
   mutations: {
@@ -53,9 +50,6 @@ export default new Vuex.Store({
       state.user = {};
       axios.defaults.headers.common = {};
     },
-    ADD_ALL_PRODUCTS(state, productsArray) {
-      state.products = productsArray;
-    },
     UPDATE_CATEGORY_FILTER(state, newFilter) {
       state.categoryFilter = newFilter;
     },
@@ -68,18 +62,14 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    loadProducts(state) {
-      fetch('products.json').then( response => {
-        return response.json();
-      }).then( data => {
-        state.commit('ADD_ALL_PRODUCTS', data);
-      });
-    },
     loadCategories(state) {
-      // This array will be populated by an API call
-      const arrayFromApi = ['Home', 'Apparel', 'Garden', 'Jewelry'];
-      arrayFromApi.unshift('All');
-      state.commit('ADD_ALL_CATEGORIES', arrayFromApi);
+
+      ProductService.getAllCategories().then( response => {
+        const arrayFromApi = response.data;
+        arrayFromApi.unshift('All');
+        state.commit('ADD_ALL_CATEGORIES', arrayFromApi);
+      }).catch( error => console.error(error) );
+
     }
   },
   modules: {

@@ -11,6 +11,7 @@
 
 <script>
 import ProductDetail from '@/components/ProductDetail.vue'
+import productService from '@/services/ProductService.js'
 
 export default {
     name: 'product-list',
@@ -19,13 +20,13 @@ export default {
     },
     data() {
       return {
-        
+        products: []
         
       }
     },
     computed: {
       filteredProducts() {
-        return this.$store.getters.products.filter( product => {
+        return this.products.filter( product => {
           const currentFilter = this.$store.state.categoryFilter;
           if (currentFilter === 'All') {
             return true;
@@ -37,6 +38,11 @@ export default {
         });
       }
     },
+    created() {
+      productService.getAllProducts().then( response => {
+        this.products = response.data;
+      });
+    }
 }
 </script>
 

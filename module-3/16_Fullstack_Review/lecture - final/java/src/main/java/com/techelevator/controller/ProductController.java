@@ -23,7 +23,7 @@ public class ProductController {
     }
 
     @RequestMapping(path="/products/{id}", method= RequestMethod.GET)
-    public Product get(@PathVariable("id") int productId) {
+    public Product get(@PathVariable("id") int productId) throws InterruptedException {
         return productDao.get(productId);
     }
 
